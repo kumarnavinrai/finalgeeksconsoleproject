@@ -65,7 +65,7 @@ var pollingLoop = function(host) {
    
 
   // Doing the database query
-  var query = connection.query('SELECT * FROM temponline'),
+  var query = connection.query('SELECT * FROM temponline WHERE status = 1'),
     users = []; // this array will contain the result of our db query
 
   // setting the query listeners
