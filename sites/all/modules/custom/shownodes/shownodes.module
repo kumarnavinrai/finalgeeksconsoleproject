@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * This is the main module file.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function shownodes_help($path, $arg) {
+
+  if ($path == 'admin/help#shownodes') {
+    $output = '<h3>' . t('About') . '</h3>';
+    $output .= '<p>' . t('The shownodes module allows the Administrator to display various types of nodes as a block on your Drupal site.') . '</p>';
+    return $output;
+  }
+}
+
+
+function shownodes_node_insert($node) {
+    
+  
+  switch ($node->type) {
+    case 'messagetoclient':      
+      //node_save($node);      
+      //$portno = $node->field_portnumber['und'][0]['value'];
+      $msg = $node->field_message['und'][0]['value'];
+      $portno = explode(",",$node->field_portnumber['und'][0]['value']);
+      //print_r($portno); 
+      if(count($portno) && $msg && $portno)
+      {
+        foreach ($portno as $key => $value) 
+        {
+          $cmdtoins = "console ".$value." ".$msg;
+          $result = db_insert('cmdtorun')
+          ->fields(array(
+              command => $cmdtoins
+            ))
+          ->execute();
+        }
+      }  
+      
+        $_SESSION["message"] = 'Messages sent successfully.';
+        drupal_set_message('Messages sent successfully.');
+      
+      break;
+    
+  }
+  
+}
+
