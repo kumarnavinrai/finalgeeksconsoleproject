@@ -181,7 +181,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               <tr>
                 <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                 <td><?php echo $item->version; $dataforgraph[] = array("version" => $item->version, "average" => round($item->avgage)); ?></td>
-                <td><?php echo round($item->avgage); ?> (Days)</td>
+                <td><?php echo round($item->avgage); ?> (Minutes)</td>
                
                
                  
