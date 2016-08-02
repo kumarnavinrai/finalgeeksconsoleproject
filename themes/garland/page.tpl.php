@@ -266,7 +266,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             
             <?php   foreach($arrayofparents as $item) { ?>
               <tr>
-                <td><a href="#">Both</a></td>
+                <td><a href="#" class="selboth">Both</a></td>
                 <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
                 <td><?php echo $item['user_name']; ?></td>
                 <?php if(isset($item['child'])){ ?>
@@ -332,7 +332,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       jQuery("#edit-body-und-0-value").val("test");
       jQuery("#edit-submit").val("Send");
       
-      jQuery("#checkAll").change(function () { 
+      jQuery("#checkAll").on('change',function () { 
           $("input:checkbox").attr('checked', jQuery(this).attr("checked"));
 
                 if($(this).is(":checked")){
@@ -342,7 +342,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 }
       });
 
-       jQuery("#checkAll100").change(function () {  
+       jQuery("#checkAll100").on('change',function () {  
           var maincheckbox = $(this);
           var counter = 1;
           jQuery('.clientportno').each(function(i, obj) {
@@ -360,7 +360,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
       });
 
-      jQuery("#edit-submit").click(function(e){
+      jQuery("#edit-submit").on('click',function(e){
           //alert("aaa");
           
           var selectedcheckboxes;
@@ -385,6 +385,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
 
       });
+
+      jQuery(".sel").on('click',function(e){
+
+
+      });
+
           
   });
 
