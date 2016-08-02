@@ -332,7 +332,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       jQuery("#edit-body-und-0-value").val("test");
       jQuery("#edit-submit").val("Send");
 
-      $(".sel").on('click',function(e){
+      $(".selboth").on('click',function(e){
         e.preventDefault();
          alert("gldkfsgfkdjhg");
 
