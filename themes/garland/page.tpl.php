@@ -419,7 +419,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               return this.value;
           }).get().join(",");
           if(selectedcheckboxeschild){
-            selectedcheckboxes = selectedcheckboxes + selectedcheckboxeschild;
+            selectedcheckboxes = selectedcheckboxes +","+ selectedcheckboxeschild;
           }
           
           console.log("------------");
