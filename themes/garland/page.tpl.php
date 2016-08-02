@@ -247,7 +247,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
                                           );
                   }
-                  elseif($found)
+                  elseif($found && $arrayofparents[$found]['ip'] == $val['ip'])
                   {
                     $arrayofparents[$found]['child'] =  $val;
                   }
