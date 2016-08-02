@@ -231,7 +231,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
               }*/
               echo "<pre>"; print_r($arrayofchilds); print_r($arrayofparents); die;
-                }
+               
             ?>  
             
             <?php   foreach($result as $item) { ?>
