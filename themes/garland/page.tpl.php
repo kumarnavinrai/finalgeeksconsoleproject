@@ -415,7 +415,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           }).get().join(",");
 
           var selectedcheckboxeschild;
-          selectedcheckboxeschild = jQuery("input[name=clientportnochild]:checked").map(function() {
+          selectedcheckboxeschild = jQuery("input[name=clientportschild]:checked").map(function() {
               return this.value;
           }).get().join(",");
           /*if(selectedcheckboxeschild){
@@ -426,6 +426,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           console.log(selectedcheckboxes); 
           console.log("------------");
           console.log(selectedcheckboxeschild); 
+          console.log("------------");
           return;
           jQuery(".form-item-field-portnumber-und-0-value input").val(selectedcheckboxes);
           /*alert(jQuery("input[name=clientports]:checked").map(function() {
