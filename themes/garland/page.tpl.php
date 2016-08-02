@@ -258,7 +258,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 ksort($arrayofparents);
               }  
               
-              echo "<pre>"; print_r($arrayofparents); die;
+              //echo "<pre>"; print_r($arrayofparents); die;
                
             ?>  
             
