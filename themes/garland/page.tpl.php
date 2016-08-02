@@ -337,10 +337,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
         var a = $(this).parent('td').parent('tr');//prop("checked",true);
           a.find('td').each (function() {
             if ( $(this).children( "input" ).length ) {
-              if($(this).children( "input" ).is(":checked")){
+              if($(this).children( "input" ).is(":checked")){ console.log("checked");
                     $(this).children( "input" ).prop("checked",true);
               }else{
-                  $(this).children( "input" ).prop("checked",false);
+                  $(this).children( "input" ).prop("checked",false); console.log("not checked");
               }
               console.log($(this).html());
             }  
