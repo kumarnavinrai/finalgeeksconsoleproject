@@ -331,6 +331,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       jQuery("#edit-title").val(" Client");
       jQuery("#edit-body-und-0-value").val("test");
       jQuery("#edit-submit").val("Send");
+
+      $(".sel").on('click',function(e){
+        e.preventDefault();
+         alert("gldkfsgfkdjhg");
+
+      });
       
       jQuery("#checkAll").on('change',function () { 
           $("input:checkbox").attr('checked', jQuery(this).attr("checked"));
@@ -386,11 +392,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
       });
 
-      $(".sel").on('click',function(e){
-        e.preventDefault();
-         alert("gldkfsgfkdjhg");
 
-      });
 
           
   });
