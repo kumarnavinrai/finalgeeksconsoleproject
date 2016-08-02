@@ -181,12 +181,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             <table style="width:100%">
               
               <tr>
+                <th>Select Both</th>
                 <th>Select</th>
                 <th>PC Name Parent</th>
                 <th>Select</th>
                 <th>PC Name Child</th>
+                <th>Port child</th>
                 <th>IP</th>
-                <th>Port</th>
+                <th>Port parent</th>
                 <th>Country</th>
               </tr>
             <?php 
@@ -264,13 +266,16 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             
             <?php   foreach($arrayofparents as $item) { ?>
               <tr>
+                <td><a href="#">Both</a></td>
                 <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
                 <td><?php echo $item['user_name']; ?></td>
                 <?php if(isset($item['child'])){ ?>
                 <td><input type="checkbox" class="clientportnochild" name="clientportschild" value="<?php echo $item['child']['port']; ?>"></td>
                 <td><?php echo $item['child']['user_name']; ?></td>
+                <td><?php echo $item['child']['port']; ?></td>
                 <?php }elseif(!isset($item['child'])){ ?>
                  <td></td>
+                <td></td> 
                 <td></td>   
                 <?php } ?>  
                 <td><?php echo $item['ip']; ?></td>
