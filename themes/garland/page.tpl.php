@@ -230,7 +230,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               { 
 
               }*/
-              echo "<pre>"; print_r($arrayofchilds); print_r($arrayofparents); die;
+              $ans = array_search('pc..5 Parent', array_map(function($data) {return $data['user_name'];}, $arrayofparents));
+              echo "<pre>"; print_r($ans); print_r($arrayofchilds); print_r($arrayofparents); die;
                
             ?>  
             
