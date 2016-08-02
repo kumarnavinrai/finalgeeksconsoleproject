@@ -233,16 +233,29 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                   
                   $valtosearch = $val['user_name']." Parent";
                   $found = array_search($valtosearch, array_map(function($data) {return $data['user_name'];}, $arrayofparents));
-                  echo "<pre>"; 
-                  print_r($key);
-                  print_r($found); 
-                  print_r($val); 
-                  print_r($arrayofparents);
-                  die;
+                  if(!$found)
+                  {
+                    $arrayofparents[$key] = array(
+                                          'id'=>'',
+                                          'user_name'=>$val['user_name'],
+                                          'port'=>'',
+                                          'ip'=>$val['ip'],
+                                          'source'=>$val['source'],
+                                          'type'=>'',
+                                          'version'=>'',
+                                          'child'=>  $val
+
+                                          );
+                  }
+                  elseif($found)
+                  {
+                    $arrayofparents[$found]['child'] =  $val;
+                  }
+                  
                 }
               }  
-              $ans = array_search('pc..5 Parent', array_map(function($data) {return $data['user_name'];}, $arrayofparents));
-              echo "<pre>"; print_r($ans); print_r($arrayofchilds); print_r($arrayofparents); die;
+              
+              echo "<pre>"; print_r($arrayofchilds); print_r($arrayofparents); die;
                
             ?>  
             
