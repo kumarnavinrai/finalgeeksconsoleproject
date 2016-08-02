@@ -338,15 +338,15 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           a.find('td').each (function() {
             if ( $(this).children( "input" ).length ) {
               if($(this).children( "input" ).is(":checked")){ 
-                    console.log("checked");
+                    
                     $(this).children( "input" ).prop("checked",false);
                     $(this).children( "input" ).attr('checked', false);
                   
               }else{
-                  $(this).children( "input" ).prop("checked",true); console.log("not checked");
+                  $(this).children( "input" ).prop("checked",true); 
                   $(this).children( "input" ).attr('checked', true);
               }
-              console.log($(this).html());
+              
             }  
           });  
         //alert(a);
@@ -358,9 +358,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           $("input:checkbox").attr('checked', jQuery(this).attr("checked"));
 
                 if($(this).is(":checked")){
+                  
                     $('.clientportno').prop("checked",true);
+                    $('.clientportnochild').prop("checked",true);
                 }else{
                     $('.clientportno').prop("checked",false);
+                    $('.clientportnochild').prop("checked",false);
                 }
       });
 
@@ -378,6 +381,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             }
             counter = counter +1;
           });
+          
           
 
       });
