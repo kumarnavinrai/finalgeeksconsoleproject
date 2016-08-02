@@ -194,7 +194,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                                         'user_name'=>$item->user_name,
                                         'port'=>$item->port,
                                         'ip'=>$item->ip,
-                                        'source'=>$item->source
+                                        'source'=>$item->source,
+                                        'type'=>$item->type
+
                                         );
 
               }
