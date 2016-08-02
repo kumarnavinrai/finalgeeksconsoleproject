@@ -189,7 +189,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             <?php 
               //change array here 
               $arrayforprocessing = array();
-              foreach($result as $k => $item) {
+              foreach($result as $k => $item) { echo strpos($item->user_name, '..'); die;
                 $arrayforprocessing[$k]=array(
                                         'user_name'=>$item->user_name,
                                         'port'=>$item->port,
