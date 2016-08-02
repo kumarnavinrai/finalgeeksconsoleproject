@@ -271,7 +271,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
                 <td><?php echo $item['user_name']; ?></td>
                 <?php }elseif(!$item['port']){ ?>
-                  <td></td>  
+                  <td><input type="checkbox" class="clientportno" name="clientportsoffmode" value="" style="display:none;" ></td>  
                   <td></td>  
                 <?php } ?>
                 <?php if(isset($item['child'])){ ?>
@@ -422,12 +422,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             selectedcheckboxes = selectedcheckboxes +","+ selectedcheckboxeschild;
           }
           
-          console.log("------------");
-          console.log(selectedcheckboxes); 
-          console.log("------------");
-          console.log(selectedcheckboxeschild); 
-          console.log("------------");
-          return;
+          
           jQuery(".form-item-field-portnumber-und-0-value input").val(selectedcheckboxes);
           /*alert(jQuery("input[name=clientports]:checked").map(function() {
               return this.value;
