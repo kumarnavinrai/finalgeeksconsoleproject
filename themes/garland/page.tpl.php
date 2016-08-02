@@ -386,7 +386,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
       });
 
-      jQuery(".sel").on('click',function(e){
+      $(".sel").on('click',function(e){
+        e.preventDefault();
          alert("gldkfsgfkdjhg");
 
       });
