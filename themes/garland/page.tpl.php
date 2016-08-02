@@ -186,6 +186,20 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <th>Port</th>
                 <th>Country</th>
               </tr>
+            <?php 
+              //change array here 
+              $arrayforprocessing = array();
+              foreach($result as $k => $item) {
+                $arrayforprocessing[$k]=array(
+                                        'user_name'=>$item->user_name,
+                                        'port'=>$item->port,
+                                        'ip'=>$item->ip,
+                                        'source'=>$item->source
+                                        );
+
+              }
+              echo "<pre>"; print_r($arrayforprocessing); die;
+            ?>  
             
             <?php   foreach($result as $item) { ?>
               <tr>
