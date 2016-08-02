@@ -190,15 +190,16 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               //change array here 
               $arrayforprocessing = array();
               foreach($result as $k => $item) { 
-                echo strpos($item->user_name, '..'); 
-                echo substr($item->user_name, strpos($item->user_name, '..')+2, 1);
-                die;
+                
+                $version = substr($item->user_name, strpos($item->user_name, '..')+2, 1);
+                
                 $arrayforprocessing[$k]=array(
                                         'user_name'=>$item->user_name,
                                         'port'=>$item->port,
                                         'ip'=>$item->ip,
                                         'source'=>$item->source,
-                                        'type'=>$item->type
+                                        'type'=>$item->type,
+                                        'version'=>$version  
 
                                         );
 
