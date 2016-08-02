@@ -256,17 +256,17 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 ksort($arrayofparents);
               }  
               
-              echo "<pre>"; print_r($arrayofchilds); print_r($arrayofparents); die;
+              //echo "<pre>"; print_r($arrayofparents); die;
                
             ?>  
             
-            <?php   foreach($result as $item) { ?>
+            <?php   foreach($arrayofparents as $item) { ?>
               <tr>
-                <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item->port; ?>"></td>
-                <td><?php echo $item->user_name; ?></td>
-                <td><?php echo $item->ip; ?></td>
-                <td><?php echo $item->port; ?></td>
-                <td><?php echo $item->source; ?></td>
+                <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
+                <td><?php echo $item['user_name']; ?></td>
+                <td><?php echo $item['ip']; ?></td>
+                <td><?php echo $item['port']; ?></td>
+                <td><?php echo $item['source']; ?></td>
               </tr>
                         
             <?php   } ?>
