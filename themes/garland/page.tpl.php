@@ -191,7 +191,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               $arrayforprocessing = array();
               foreach($result as $k => $item) { 
                 echo strpos($item->user_name, '..'); 
-                echo substr($item->user_name, strpos($item->user_name, '..'), 3);
+                echo substr($item->user_name, strpos($item->user_name, '..')+2, 1);
                 die;
                 $arrayforprocessing[$k]=array(
                                         'user_name'=>$item->user_name,
