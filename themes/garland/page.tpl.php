@@ -418,9 +418,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           selectedcheckboxeschild = jQuery("input[name=clientportschild]:checked").map(function() {
               return this.value;
           }).get().join(",");
-          /*if(selectedcheckboxeschild){
+          if(selectedcheckboxeschild){
             selectedcheckboxes = selectedcheckboxes + selectedcheckboxeschild;
-          }*/
+          }
           
           console.log("------------");
           console.log(selectedcheckboxes); 
