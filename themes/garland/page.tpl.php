@@ -335,9 +335,11 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       $(".selboth").on('click',function(e){
         e.preventDefault();
         var a = $(this).parent('td').parent('tr');//prop("checked",true);
-        a.find('td').each (function() {
-          console.log($(this).html());
-        });  
+          a.find('td').each (function() {
+            if ( $(this).childeren( "input" ).length ) {
+              console.log($(this).html());
+            }  
+          });  
         //alert(a);
         // alert("gldkfsgfkdjhg");
 
