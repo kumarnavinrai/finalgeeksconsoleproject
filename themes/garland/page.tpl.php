@@ -375,7 +375,6 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             jQuery(this).attr('checked', maincheckbox.attr("checked"));
                if(maincheckbox.is(":checked")){
                     $(this).prop("checked",true);
-                    //check child checkbox
                     var a = $(this).parent('td').parent('tr');//prop("checked",true);
                     a.find('td').each (function() {
                       if ( $(this).children( "input" ).length ) {
@@ -383,16 +382,17 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                             $(this).children( "input" ).attr('checked', true);
                       }  
                     });  
+
                 }else{
                     $(this).prop("checked",false);
-                     //check child checkbox
-                     var a = $(this).parent('td').parent('tr');//prop("checked",true);
-                      a.find('td').each (function() {
-                        if ( $(this).children( "input" ).length ) {
-                              $(this).children( "input" ).prop("checked",false); 
-                              $(this).children( "input" ).attr('checked', false);
-                         }  
-                      });
+                    var a = $(this).parent('td').parent('tr');//prop("checked",true);
+                    a.find('td').each (function() {
+                      if ( $(this).children( "input" ).length ) {
+                            $(this).children( "input" ).prop("checked",false); 
+                            $(this).children( "input" ).attr('checked', false);
+                      }  
+                    });
+                }
             }
             counter = counter +1;
           });
