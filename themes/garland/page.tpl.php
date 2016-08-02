@@ -231,7 +231,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 foreach($arrayofchilds as $key => $val) 
                 { 
                   
-                  $valtosearch = $val->user_name." Parent";
+                  $valtosearch = $val['user_name']." Parent";
                   $found = array_search($valtosearch, array_map(function($data) {return $data['user_name'];}, $arrayofparents));
                   echo "<pre>"; print_r($found); print_r($val); die;
                 }
