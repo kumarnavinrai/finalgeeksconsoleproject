@@ -177,6 +177,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           || <a href="/drup/node/5" title="Installation Stats">Installation Stats</a>
           </p>
           <div id="custtable">
+            <?php if($result){ ?>
             <table style="width:100%">
               
               <tr>
@@ -188,24 +189,49 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               </tr>
             <?php 
               //change array here 
-              $arrayforprocessing = array();
-              foreach($result as $k => $item) { 
+              $arrayofchilds = array();
+              $arrayofparents = array();
+              foreach($result as $k => $item) 
+              { 
                 
                 $version = substr($item->user_name, strpos($item->user_name, '..')+2, 1);
                 
-                $arrayforprocessing[$k]=array(
-                                        'id'=>$item->id,
-                                        'user_name'=>$item->user_name,
-                                        'port'=>$item->port,
-                                        'ip'=>$item->ip,
-                                        'source'=>$item->source,
-                                        'type'=>$item->type,
-                                        'version'=>$version  
+                if($item->type == 1)
+                {  
+                  $arrayofparents[$k]=array(
+                                          'id'=>$item->id,
+                                          'user_name'=>$item->user_name,
+                                          'port'=>$item->port,
+                                          'ip'=>$item->ip,
+                                          'source'=>$item->source,
+                                          'type'=>$item->type,
+                                          'version'=>$version  
 
-                                        );
+                                          );
+                }
+                elseif($item->type == 2)
+                {
+                   $arrayofchilds[$k]=array(
+                                          'id'=>$item->id,
+                                          'user_name'=>$item->user_name,
+                                          'port'=>$item->port,
+                                          'ip'=>$item->ip,
+                                          'source'=>$item->source,
+                                          'type'=>$item->type,
+                                          'version'=>$version  
+
+                                          );
+                }
+                  
 
               }
-              echo "<pre>"; print_r($arrayforprocessing); die;
+
+              /*foreach($arrayforprocessing as $key => $val) 
+              { 
+
+              }*/
+              echo "<pre>"; print_r($arrayofchilds); print_r($arrayofparents); die;
+                }
             ?>  
             
             <?php   foreach($result as $item) { ?>
@@ -220,6 +246,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             <?php   } ?>
             <?php } ?>
             </table>  
+            <?php } //if($result){ ends ?>
           </div>
           </p>
           <div class="clearfix">
