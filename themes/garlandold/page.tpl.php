@@ -4,7 +4,7 @@ $url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
 $hostfull = $host;
-$hostfornode = "http://".$_SERVER["HTTP_HOST"].":8000";
+$hostfornode = "http://admin.pc-optimiser.com:8000";
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
 
@@ -40,7 +40,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
   
     <!--    <div id="container">Loading ...</div>-->
     <!--<script src="socket.io/socket.io.js"></script>-->
-    <script src="/themes/garland/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+    <script src="/drup/themes/garland/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
@@ -177,28 +177,121 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           || <a href="/drup/node/5" title="Installation Stats">Installation Stats</a>
           </p>
           <div id="custtable">
+            <?php if($result){ ?>
             <table style="width:100%">
               
               <tr>
+                <th>Select Both</th>
                 <th>Select</th>
-                <th>PC Name</th>
+                <th>PC Name Parent</th>
+                <th>Select</th>
+                <th>PC Name Child</th>
+                <th>Port child</th>
                 <th>IP</th>
-                <th>Port</th>
+                <th>Port parent</th>
                 <th>Country</th>
               </tr>
+            <?php 
+              //change array here 
+              $arrayofchilds = array();
+              $arrayofparents = array();
+              foreach($result as $k => $item) 
+              { 
+                
+                $version = substr($item->user_name, strpos($item->user_name, '..')+2, 1);
+                
+                if($item->type == 1)
+                {  
+                  $arrayofparents[$k]=array(
+                                          'id'=>$item->id,
+                                          'user_name'=>$item->user_name,
+                                          'port'=>$item->port,
+                                          'ip'=>$item->ip,
+                                          'source'=>$item->source,
+                                          'type'=>$item->type,
+                                          'version'=>$version  
+
+                                          );
+                }
+                elseif($item->type == 2)
+                {
+                   $arrayofchilds[$k]=array(
+                                          'id'=>$item->id,
+                                          'user_name'=>$item->user_name,
+                                          'port'=>$item->port,
+                                          'ip'=>$item->ip,
+                                          'source'=>$item->source,
+                                          'type'=>$item->type,
+                                          'version'=>$version  
+
+                                          );
+                }
+                  
+
+              }
+
+              if($arrayofchilds)
+              {  
+                foreach($arrayofchilds as $key => $val) 
+                { 
+                  
+                  $valtosearch = $val['user_name']." Parent";
+                  $found = array_search($valtosearch, array_map(function($data) {return $data['user_name'];}, $arrayofparents));
+                  if(!$found)
+                  {
+                    $arrayofparents[$key] = array(
+                                          'id'=>'',
+                                          'user_name'=>'',
+                                          'port'=>'',
+                                          'ip'=>$val['ip'],
+                                          'source'=>$val['source'],
+                                          'type'=>'',
+                                          'version'=>'',
+                                          'child'=>  $val
+
+                                          );
+                  }
+                  elseif($found && $arrayofparents[$found]['ip'] == $val['ip'])
+                  {
+                    $arrayofparents[$found]['child'] =  $val;
+                  }
+                  
+                }
+                ksort($arrayofparents);
+              }  
+              
+              //echo "<pre>"; print_r($arrayofparents); die;
+               
+            ?>  
             
-            <?php   foreach($result as $item) { ?>
+            <?php   foreach($arrayofparents as $item) { ?>
               <tr>
-                <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item->port; ?>"></td>
-                <td><?php echo $item->user_name; ?></td>
-                <td><?php echo $item->ip; ?></td>
-                <td><?php echo $item->port; ?></td>
-                <td><?php echo $item->source; ?></td>
+                <td><a href="#" class="selboth">Both</a></td>
+                <?php if($item['port']){ ?>
+                <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
+                <td><?php echo $item['user_name']; ?></td>
+                <?php }elseif(!$item['port']){  ?>
+                  <td><input type="checkbox" class="clientportno" name="clientportsoffmode" value="" style="display:none;" ></td>  
+                  <td></td>  
+                <?php } ?>
+                <?php if(isset($item['child'])){ ?>
+                <td><input type="checkbox" class="clientportnochild" name="clientportschild" value="<?php echo $item['child']['port']; ?>"></td>
+                <td><?php echo $item['child']['user_name']; ?></td>
+                <td><?php echo $item['child']['port']; ?></td>
+                <?php }elseif(!isset($item['child'])){ ?>
+                 <td></td>
+                <td></td> 
+                <td></td>   
+                <?php } ?>  
+                <td><?php echo $item['ip']; ?></td>
+                <td><?php echo $item['port']; ?></td>
+                <td><?php echo $item['source']; ?></td>
               </tr>
                         
             <?php   } ?>
             <?php } ?>
             </table>  
+            <?php } //if($result){ ends ?>
           </div>
           </p>
           <div class="clearfix">
@@ -243,18 +336,43 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       jQuery("#edit-title").val(" Client");
       jQuery("#edit-body-und-0-value").val("test");
       jQuery("#edit-submit").val("Send");
+
+      $(".selboth").on('click',function(e){
+        e.preventDefault();
+        var a = $(this).parent('td').parent('tr');//prop("checked",true);
+          a.find('td').each (function() {
+            if ( $(this).children( "input" ).length ) {
+              if($(this).children( "input" ).is(":checked")){ 
+                    
+                    $(this).children( "input" ).prop("checked",false);
+                    $(this).children( "input" ).attr('checked', false);
+                  
+              }else{
+                  $(this).children( "input" ).prop("checked",true); 
+                  $(this).children( "input" ).attr('checked', true);
+              }
+              
+            }  
+          });  
+        //alert(a);
+        // alert("gldkfsgfkdjhg");
+
+      });
       
-      jQuery("#checkAll").change(function () { 
+      jQuery("#checkAll").on('change',function () { 
           $("input:checkbox").attr('checked', jQuery(this).attr("checked"));
 
                 if($(this).is(":checked")){
+                  
                     $('.clientportno').prop("checked",true);
+                    $('.clientportnochild').prop("checked",true);
                 }else{
                     $('.clientportno').prop("checked",false);
+                    $('.clientportnochild').prop("checked",false);
                 }
       });
 
-       jQuery("#checkAll100").change(function () {  
+       jQuery("#checkAll100").on('change',function () {  
           var maincheckbox = $(this);
           var counter = 1;
           jQuery('.clientportno').each(function(i, obj) {
@@ -262,23 +380,48 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             jQuery(this).attr('checked', maincheckbox.attr("checked"));
                if(maincheckbox.is(":checked")){
                     $(this).prop("checked",true);
+                    var a = $(this).parent('td').parent('tr');//prop("checked",true);
+                    a.find('td').each (function() {
+                      if ( $(this).children( "input" ).length ) {
+                            $(this).children( "input" ).prop("checked",true); 
+                            $(this).children( "input" ).attr('checked', true);
+                      }  
+                    });  
+
                 }else{
                     $(this).prop("checked",false);
+                    var a = $(this).parent('td').parent('tr');//prop("checked",true);
+                    a.find('td').each (function() {
+                      if ( $(this).children( "input" ).length ) {
+                            $(this).children( "input" ).prop("checked",false); 
+                            $(this).children( "input" ).attr('checked', false);
+                      }  
+                    });
                 }
             }
             counter = counter +1;
           });
+
           
 
       });
 
-      jQuery("#edit-submit").click(function(e){
+      jQuery("#edit-submit").on('click',function(e){
           //alert("aaa");
           
           var selectedcheckboxes;
           selectedcheckboxes = jQuery("input[name=clientports]:checked").map(function() {
               return this.value;
           }).get().join(",");
+
+          var selectedcheckboxeschild;
+          selectedcheckboxeschild = jQuery("input[name=clientportschild]:checked").map(function() {
+              return this.value;
+          }).get().join(",");
+          if(selectedcheckboxeschild){
+            selectedcheckboxes = selectedcheckboxes +","+ selectedcheckboxeschild;
+          }
+          
           
           jQuery(".form-item-field-portnumber-und-0-value input").val(selectedcheckboxes);
           /*alert(jQuery("input[name=clientports]:checked").map(function() {
@@ -297,6 +440,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
 
       });
+
+
+
           
   });
 

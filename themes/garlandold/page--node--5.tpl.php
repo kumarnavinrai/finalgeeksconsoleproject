@@ -6,6 +6,17 @@ $host = $_SERVER["HTTP_HOST"];
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
 
+/*
+  $arr["2016-04-04"][] = array("Version 1"=>9);
+                $arr["2016-04-04"][] = array("Version 2"=>5);
+                print_r(current($arr["2016-04-04"])); 
+                print_r(next($arr["2016-04-04"])); 
+                print_r(next($arr["2016-04-04"])); 
+                 print_r(next($arr["2016-04-04"])); 
+                  print_r(next($arr["2016-04-04"])); 
+                   print_r(next($arr["2016-04-04"])); 
+                die;
+*/
 
 $adminselect = array("admin"=>"WHERE 1","adminone"=>"WHERE user_name LIKE '%..1%'","admintwo"=>"WHERE user_name LIKE '%..2%'","adminthree"=>"WHERE user_name LIKE '%..3%'","adminfour"=>"WHERE user_name LIKE '%..4%'","adminfour"=>"WHERE user_name LIKE '%..4%'","adminfive"=>"WHERE user_name LIKE '%..5%'","adminsix"=>"WHERE user_name LIKE '%..6%'","adminseven"=>"WHERE user_name LIKE '%..7%'","admineight"=>"WHERE user_name LIKE '%..8%'");
 
@@ -134,7 +145,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           
 
           <?php if(isset($resulttwo) && $resulttwo) { ?>
-
+          <h2>Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+ ?></h2>
           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
           <script type="text/javascript">
             google.charts.load('current', {packages: ['corechart']});     
@@ -151,7 +163,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               padding: 15px;
           }
           </style>
-          <h2>Average Install life per version.</h2>
+          <h2>Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+ ?></h2>
           <div id="custtable">
             <table style="width:100%">
               
@@ -198,7 +211,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
              // Set chart options
              var options = {'title':'Average Install life per version',
                 'width':550,
-                'height':400};
+                'height':400,
+                slices: {  
+                   1: {offset: 0.2},
+                   3: {offset: 0.3}                  
+                }
+              };
 
              // Instantiate and draw the chart.
              var chart = new google.visualization.PieChart(document.getElementById('containerone'));
@@ -209,9 +227,21 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
             <?php } ?>
           
           </p>
-        
+        <br>
+          <br>
+            <hr>
+          <br>
+          <br>
       <p>
-      <h2>Total Install per version per day.</h2>
+      <h2>Total Install per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+ ?></h2>
+      <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+      
+      <p>
+        <div id="curve_chart" style="width: 900px; height: 500px"></div>
+      </p>
+        <h2>Total Install per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+ ?></h2>
           <?php if(isset($result) && $result) { ?>
           <style>
           table, th, td {
@@ -244,16 +274,74 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                  
 
               </tr>
+              <?php
+
+                $arr[$item->indate][] = array($item->version=>$item->noofinstalls);
+                
+                
+              ?>
                         
             <?php   } ?>
-            
+            <!--
+                  $arr["2016-04-04"][] = array("Version 1"=>9);
+                $arr["2016-04-04"][] = array("Version 2"=>5);
+                print_r(current($arr["2016-04-04"])); 
+                print_r(next($arr["2016-04-04"])); 
+                print_r(next($arr["2016-04-04"])); 
+                 print_r(next($arr["2016-04-04"])); 
+                  print_r(next($arr["2016-04-04"])); 
+                   print_r(next($arr["2016-04-04"])); 
+                die;
+
+
+             -->
             </table>  
             </div>
+            <script type="text/javascript">
+              //google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Dates', 'Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],
+                  <?php if(isset($arr) && $arr){ ?>
+                  <?php foreach($arr as $key => $val){ ?>  
+                    ['<?php echo $key; ?>', <?php $p = current($val); echo isset($p[1])?$p[1]:0; ?>, <?php $p = next($val); echo isset($p[2])?$p[2]:0; ?>, <?php $p = next($val); echo isset($p[3])?$p[3]:0; ?>, <?php $p = next($val); echo isset($p[4])?$p[4]:0; ?>, <?php $p = next($val); echo isset($p[5])?$p[5]:0; ?>, <?php $p = next($val); echo isset($p[6])?$p[6]:0; ?>, <?php $p = next($val); echo isset($p[7])?$p[7]:0; ?>, <?php $p = next($val); echo isset($p[8])?$p[8]:0; ?>],
+                  <?php } ?>  
+                  <?php } ?>
+                  
+                ]);
+
+                var options = {
+                  title: 'Total Install per version per day.',
+                  curveType: 'function',
+                  legend: { position: 'bottom' }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                chart.draw(data, options);
+              }
+            </script>
             <?php } ?>
           
           </p>
+        
+          <br>
+          <br>
+            <hr>
+          <br>
+          <br>
         <p>
-          <h2>Total Uninstall per version per day.</h2>
+        <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+ ?></h2>
+      <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+      
+      <p>
+        <div id="curve_chart_1" style="width: 900px; height: 500px"></div>
+      </p>
+          <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+ ?></h2>
 
           <?php if(isset($resultone) && $resultone) { ?>
           <style>
@@ -277,7 +365,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                 
               </tr>
             
-            <?php   foreach($resultone as $item) {  ?>
+            <?php  $arr = array();  foreach($resultone as $item) {  ?>
               <tr>
                 <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                 <td><?php echo $item->version; ?></td>
@@ -287,11 +375,41 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                  
 
               </tr>
-                        
+              <?php
+               
+                $arr[$item->unindate][] = array($item->version=>$item->noofinstalls);
+                
+              ?> 
             <?php   } ?>
             
             </table>  
             </div>
+            <script type="text/javascript">
+              //google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Dates', 'Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],
+                  <?php if(isset($arr) && $arr){ ?>
+                  <?php foreach($arr as $key => $val){ ?>  
+                    ['<?php echo $key; ?>', <?php $p = current($val); echo isset($p[1])?$p[1]:0; ?>, <?php $p = next($val); echo isset($p[2])?$p[2]:0; ?>, <?php $p = next($val); echo isset($p[3])?$p[3]:0; ?>, <?php $p = next($val); echo isset($p[4])?$p[4]:0; ?>, <?php $p = next($val); echo isset($p[5])?$p[5]:0; ?>, <?php $p = next($val); echo isset($p[6])?$p[6]:0; ?>, <?php $p = next($val); echo isset($p[7])?$p[7]:0; ?>, <?php $p = next($val); echo isset($p[8])?$p[8]:0; ?>],
+                  <?php } ?>  
+                  <?php } ?>
+                  
+                ]);
+
+                var options = {
+                  title: 'Total Uninstall per version per day.',
+                  curveType: 'function',
+                  legend: { position: 'bottom' }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart_1'));
+
+                chart.draw(data, options);
+              }
+            </script>
             <?php } ?>
           
           </p>
