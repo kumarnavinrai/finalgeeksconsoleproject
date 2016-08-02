@@ -194,6 +194,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 $version = substr($item->user_name, strpos($item->user_name, '..')+2, 1);
                 
                 $arrayforprocessing[$k]=array(
+                                        'id'=>$item->id,
                                         'user_name'=>$item->user_name,
                                         'port'=>$item->port,
                                         'ip'=>$item->ip,
