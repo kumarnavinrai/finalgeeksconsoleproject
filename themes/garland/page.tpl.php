@@ -270,8 +270,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <?php if($item['port']){ ?>
                 <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
                 <td><?php echo $item['user_name']; ?></td>
-                <?php }elseif(!$item['port']){ ?>
-                  <td><input type="checkbox" class="clientportno" name="clientportsoffmode" value="" style="display:none;" ></td>  
+                <?php }elseif(!$item['port']){  ?>
+                  <td>dadfadada<input type="checkbox" class="clientportno" name="clientportsoffmode" value="" style="display:none;" ></td>  
                   <td></td>  
                 <?php } ?>
                 <?php if(isset($item['child'])){ ?>
