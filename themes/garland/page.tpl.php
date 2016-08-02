@@ -182,7 +182,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               
               <tr>
                 <th>Select</th>
-                <th>PC Name</th>
+                <th>PC Name Parent</th>
+                <th>Select</th>
+                <th>PC Name Child</th>
                 <th>IP</th>
                 <th>Port</th>
                 <th>Country</th>
@@ -256,7 +258,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 ksort($arrayofparents);
               }  
               
-              //echo "<pre>"; print_r($arrayofparents); die;
+              echo "<pre>"; print_r($arrayofparents); die;
                
             ?>  
             
@@ -264,6 +266,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               <tr>
                 <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
                 <td><?php echo $item['user_name']; ?></td>
+                <?php if(isset($item['child'])){ ?>
+                  <td><input type="checkbox" class="clientportnochild" name="clientportschild" value="<?php echo $item['port']; ?>"></td>
+                <td><?php echo $item['user_name']; ?></td>
+                <?php } ?>  
                 <td><?php echo $item['ip']; ?></td>
                 <td><?php echo $item['port']; ?></td>
                 <td><?php echo $item['source']; ?></td>
