@@ -237,7 +237,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                   {
                     $arrayofparents[$key] = array(
                                           'id'=>'',
-                                          'user_name'=>$val['user_name'],
+                                          'user_name'=>'',
                                           'port'=>'',
                                           'ip'=>$val['ip'],
                                           'source'=>$val['source'],
