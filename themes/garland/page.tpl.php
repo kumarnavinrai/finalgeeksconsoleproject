@@ -413,7 +413,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           selectedcheckboxes = jQuery("input[name=clientports]:checked").map(function() {
               return this.value;
           }).get().join(",");
-          console.log(selectedcheckboxes);
+          console.log(selectedcheckboxes); return;
           jQuery(".form-item-field-portnumber-und-0-value input").val(selectedcheckboxes);
           /*alert(jQuery("input[name=clientports]:checked").map(function() {
               return this.value;
