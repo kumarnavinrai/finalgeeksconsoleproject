@@ -230,7 +230,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               {  
                 foreach($arrayofchilds as $key => $val) 
                 { 
-                  echo "<pre>"; print_r($val); die;
+                  
+                  $valtosearch = $val." Parent";
+                  $found = array_search($valtosearch, array_map(function($data) {return $data['user_name'];}, $arrayofparents));
+                  echo "<pre>"; print_r($found); die;
                 }
               }  
               $ans = array_search('pc..5 Parent', array_map(function($data) {return $data['user_name'];}, $arrayofparents));
