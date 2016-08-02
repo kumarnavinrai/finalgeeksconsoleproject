@@ -334,6 +334,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
       $(".selboth").on('click',function(e){
         e.preventDefault();
+        var a = $(this).parent('td').html();//prop("checked",true);
+        alert(a);
          alert("gldkfsgfkdjhg");
 
       });
