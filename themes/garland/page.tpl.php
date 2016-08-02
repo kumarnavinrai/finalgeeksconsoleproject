@@ -336,7 +336,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
         e.preventDefault();
         var a = $(this).parent('td').parent('tr');//prop("checked",true);
           a.find('td').each (function() {
-            if ( $(this).childeren( "input" ).length ) {
+            if ( $(this).children( "input" ).length ) {
               console.log($(this).html());
             }  
           });  
