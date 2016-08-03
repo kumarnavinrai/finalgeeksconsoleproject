@@ -14,6 +14,7 @@ $end = date("Y-m-d");
 //echo $start_week.' '.$end_week ;
 $_POST["from"] = $start;
 $_POST["to"] = $end;
+$_POST["to"] = $_POST["to"]." 23:59:59";
 
 
 /*
@@ -56,6 +57,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/8")) { //print_r($_POST
   $resulttwo = db_query($qrytwo);
   $_SESSION["perm"]="a";
 }
+
+$_POST["to"] = $end;
 
 ?>
   <?php print render($page['header']); ?>

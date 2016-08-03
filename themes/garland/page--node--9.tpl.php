@@ -16,7 +16,7 @@ $end_week = date("Y-m-d",$end_week);
 //echo $start_week.' '.$end_week ;
 $_POST["from"] = $start_week;
 $_POST["to"] = $end_week;
-
+$_POST["to"] = $_POST["to"]." 23:59:59";
 
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
@@ -59,6 +59,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/9")) { //print_r($_POST
   $_SESSION["perm"]="a";
 }
 
+$_POST["to"] = $end_week;
 ?>
   <?php print render($page['header']); ?>
 

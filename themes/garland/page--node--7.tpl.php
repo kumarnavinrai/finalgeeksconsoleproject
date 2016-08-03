@@ -7,7 +7,7 @@ $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
 $_POST["from"] = date("Y-m-d",strtotime("-2 days"));
 $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
-
+$_POST["to"] = $_POST["to"]." 23:59:59";
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
                 $arr["2016-04-04"][] = array("Version 2"=>5);
@@ -48,6 +48,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/7")) { //print_r($_POST
   $resulttwo = db_query($qrytwo);
   $_SESSION["perm"]="a";
 }
+
+
+$_POST["to"] = date("Y-m-d",strtotime("-1 days"));
 
 ?>
   <?php print render($page['header']); ?>
