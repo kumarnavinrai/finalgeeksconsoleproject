@@ -139,6 +139,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
           <button>Go</button>     
         </form>  
         <h1>Todays Instalation Stats</h1>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </p>
       <p>
 

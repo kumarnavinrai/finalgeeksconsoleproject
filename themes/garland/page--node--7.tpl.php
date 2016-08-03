@@ -1,10 +1,12 @@
-<?php  die("i am node 6");
+<?php  
 global $user;
 $url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
+$_POST["from"] = date("Y-m-d",strtotime("-2 days"));
+$_POST["to"] = date("Y-m-d",strtotime("-1 days"));
 
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
@@ -24,7 +26,7 @@ $adminselect = array("admin"=>"WHERE 1","adminone"=>"WHERE user_name LIKE '%..1%
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
 
 
-if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST); die;
+if (in_array('reps', $user->roles) && strpos($uri,"/node/7")) { //print_r($_POST); die;
   $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
   //$qry = "SELECT * FROM appdata ".$adminselect[$host].$datequery;//." BETWEEN #07/04/1996# AND #07/09/1996#;";
   $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
@@ -130,13 +132,18 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
             });
           });
         </script>  
-        <form id="formrange" class=".clsformrange" method="POST">
+        <form id="formrange" class=".clsformrange" method="POST" style="display:none;" >
           <label for="from">From</label>
           <input type="text" id="from" name="from">
           <label for="to">to</label>
           <input type="text" id="to" name="to"> 
           <button>Go</button>     
         </form>  
+        <h1>Yesterday's Instalation Stats</h1>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </p>
       <p>
 
