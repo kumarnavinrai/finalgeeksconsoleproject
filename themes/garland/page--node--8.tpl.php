@@ -5,16 +5,16 @@ $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
-$previous_week = strtotime("-1 week +1 day");
+$d = strtotime("today");
+$start_week = strtotime("last sunday midnight",$d);
+$end_week = strtotime("next saturday",$d);
+$start = date("Y-m-d",$start_week); 
+$end = date("Y-m-d",$end_week); 
 
-$start_week = strtotime("last sunday midnight",$previous_week);
-$end_week = strtotime("next saturday",$start_week);
+//echo $start_week.' '.$end_week ;
+$_POST["from"] = $start;
+$_POST["to"] = $end;
 
-$start_week = date("Y-m-d",$start_week);
-$end_week = date("Y-m-d",$end_week);
-
-echo $start_week.' '.$end_week ;
-die;
 
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
@@ -140,13 +140,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/8")) { //print_r($_POST
             });
           });
         </script>  
-        <form id="formrange" class=".clsformrange" method="POST">
+        <form id="formrange" class=".clsformrange" method="POST" style="display:none;" >
           <label for="from">From</label>
           <input type="text" id="from" name="from">
           <label for="to">to</label>
           <input type="text" id="to" name="to"> 
           <button>Go</button>     
         </form>  
+        <h1>This week instalation stats</h1>
       </p>
       <p>
 
