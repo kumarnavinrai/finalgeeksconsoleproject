@@ -1,11 +1,12 @@
-<?php  die("i am node 6");
+<?php  
 global $user;
 $url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
-
+$_POST["from"] = date("Y-m-d",strtotime("-1 days"));
+$_POST["to"] = date("Y-m-d");
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
                 $arr["2016-04-04"][] = array("Version 2"=>5);
@@ -132,9 +133,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
         </script>  
         <form id="formrange" class=".clsformrange" method="POST">
           <label for="from">From</label>
-          <input type="text" id="from" name="from">
+          <input type="text" id="from" name="from" value="<?php echo $_POST["from"]; ?>" >
           <label for="to">to</label>
-          <input type="text" id="to" name="to"> 
+          <input type="text" id="to" name="to" value="<?php echo $_POST["to"]; ?>" > 
           <button>Go</button>     
         </form>  
       </p>
