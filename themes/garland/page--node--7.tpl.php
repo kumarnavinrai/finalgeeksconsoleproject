@@ -6,7 +6,7 @@ $host = $_SERVER["HTTP_HOST"];
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
 $_POST["from"] = date("Y-m-d",strtotime("-2 days"));
-$_POST["to"] = date("Y-m-d",strtotime("-1 days"));
+$_POST["to"] = date("Y-m-d H:i:s",strtotime("-1 days"));
 
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
