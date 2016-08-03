@@ -175,6 +175,13 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           <p>
           <input type="checkbox" id="checkAll"/> Select All&nbsp;<input type="checkbox" id="checkAll100"/> Select First 100&nbsp;
           || <a href="/drup/node/5" title="Installation Stats">Installation Stats</a>
+          || <a href="/drup/node/5" title="Installation Stats">Today Installation Stats</a>
+          || <a href="/drup/node/5" title="Installation Stats">Yesterday Installation Stats</a>
+          || <a href="/drup/node/5" title="Installation Stats">This Week Installation Stats</a>
+          || <a href="/drup/node/5" title="Installation Stats">Last Week Installation Stats</a>
+          || <a href="/drup/node/5" title="Installation Stats">Last Week Installation Stats</a>
+          || <a href="/drup/node/5" title="Installation Stats">This Month Installation Stats</a>
+          || <a href="/drup/node/5" title="Installation Stats">Month Before Installation Stats</a>
           </p>
           <div id="custtable">
             <?php if($result){ ?>
