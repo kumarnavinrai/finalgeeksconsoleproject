@@ -151,7 +151,7 @@ $_POST["to"] = $end_week;
           <input type="text" id="to" name="to" value="<?php echo $_POST["to"]; ?>" > 
           <button>Go</button>     
         </form>  
-        <h1>Todays Installation Stats</h1>
+        <h1>Last Week's Installation Stats</h1>
         <br/>
         <br/>
         <br/>
