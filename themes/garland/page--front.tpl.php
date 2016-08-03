@@ -83,3 +83,12 @@ if (in_array('reps', $user->roles) && !strpos($uri,"/node/add/messagetoclient"))
 
     </div> <!-- /#container -->
   </div> <!-- /#wrapper -->
+<style>
+#user-login-form .first{
+  display: none;
+}
+
+#user-login-form .last{
+  display: none;
+}
+</style>
