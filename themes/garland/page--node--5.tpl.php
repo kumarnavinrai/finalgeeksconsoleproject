@@ -32,7 +32,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   $result = db_query($qry);
 
   $datequeryone = isset($_POST["from"]) && isset($_POST["to"])? " AND uninstall_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
-  echo $qryone = "SELECT count(id) as noofinstalls, DATE_FORMAT(uninstall_date,'%Y-%m-%d') as unindate, version as version  FROM appdata ".$adminselect[$host].$datequeryone." GROUP BY version, unindate ORDER BY unindate, version";
+  //uninstall_date != ''
+  $uninstalladminselecthost = str_replace('WHERE', "WHERE uninstall_date != '' AND ", $adminselect[$host]);
+  $qryone = "SELECT count(id) as noofinstalls, DATE_FORMAT(uninstall_date,'%Y-%m-%d') as unindate, version as version  FROM appdata ".$uninstalladminselecthost.$datequeryone." GROUP BY version, unindate ORDER BY unindate, version";
   //SELECT count(id) as noofinstalls, DATE_FORMAT(uninstall_date,'%Y-%m-%d') as unindate, version as version  FROM `appdata` GROUP BY version, unindate
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $resultone = db_query($qryone);
@@ -369,7 +371,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                 
               </tr>
             
-            <?php  $arr = array();  foreach($resultone as $item) { print_r($item); ?>
+            <?php  $arr = array();  foreach($resultone as $item) {  ?>
               <tr>
                 <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                 <td><?php echo $item->version; ?></td>
