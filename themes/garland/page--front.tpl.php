@@ -91,4 +91,10 @@ if (in_array('reps', $user->roles) && !strpos($uri,"/node/add/messagetoclient"))
 #user-login-form .last{
   display: none;
 }
+.submitted{
+ display: none; 
+}
+.node-readmore{
+ display: none;  
+}
 </style>
