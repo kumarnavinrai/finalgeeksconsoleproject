@@ -95,6 +95,6 @@ if (in_array('reps', $user->roles) && !strpos($uri,"/node/add/messagetoclient"))
  display: none; 
 }
 .node-readmore{
- display: none;  
+ display: none !important;  
 }
 </style>
