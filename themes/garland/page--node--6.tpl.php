@@ -138,7 +138,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
           <input type="text" id="to" name="to" value="<?php echo $_POST["to"]; ?>" > 
           <button>Go</button>     
         </form>  
-        <h1>Todays Instalation Stats</h1>
+        <h1>Todays Installation Stats</h1>
         <br/>
         <br/>
         <br/>

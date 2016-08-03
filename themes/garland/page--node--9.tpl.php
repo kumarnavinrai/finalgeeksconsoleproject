@@ -149,7 +149,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/9")) { //print_r($_POST
           <input type="text" id="to" name="to"> 
           <button>Go</button>     
         </form>  
-        <h1>Last week instalation stats</h1>
+        <h1>Last Week's Installation Stats</h1>
       </p>
       <p>
 
