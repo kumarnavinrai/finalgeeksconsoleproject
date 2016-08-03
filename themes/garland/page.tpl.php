@@ -179,7 +179,6 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           || <a href="/drup/node/5" title="Installation Stats">Yesterday Stats</a>
           || <a href="/drup/node/5" title="Installation Stats">This Week Stats</a>
           || <a href="/drup/node/5" title="Installation Stats">Last Week Stats</a>
-          || <a href="/drup/node/5" title="Installation Stats">Last Week Stats</a>
           || <a href="/drup/node/5" title="Installation Stats">This Month Stats</a>
           || <a href="/drup/node/5" title="Installation Stats">Month Before Stats</a>
           </p>
