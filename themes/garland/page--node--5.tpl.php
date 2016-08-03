@@ -369,7 +369,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                 
               </tr>
             
-            <?php  $arr = array();  foreach($resultone as $item) {  ?>
+            <?php  $arr = array();  foreach($resultone as $item) { print_r($item); ?>
               <tr>
                 <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                 <td><?php echo $item->version; ?></td>
