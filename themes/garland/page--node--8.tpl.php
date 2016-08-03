@@ -9,7 +9,7 @@ $d = strtotime("today");
 $start_week = strtotime("last sunday midnight",$d);
 $end_week = strtotime("next saturday",$d);
 $start = date("Y-m-d",$start_week); 
-$end = date("Y-m-d",$end_week); 
+$end = date("Y-m-d"); 
 
 //echo $start_week.' '.$end_week ;
 $_POST["from"] = $start;
