@@ -131,13 +131,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
             });
           });
         </script>  
-        <form id="formrange" class=".clsformrange" method="POST">
+        <form id="formrange" class=".clsformrange" method="POST" style="display:none;">
           <label for="from">From</label>
           <input type="text" id="from" name="from" value="<?php echo $_POST["from"]; ?>" >
           <label for="to">to</label>
           <input type="text" id="to" name="to" value="<?php echo $_POST["to"]; ?>" > 
           <button>Go</button>     
         </form>  
+        <h1>Todays Instalation Stats</h1>
       </p>
       <p>
 
