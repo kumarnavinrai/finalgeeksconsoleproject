@@ -7,17 +7,7 @@ $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
 $_POST["from"] = date("Y-m-d",strtotime("-1 days"));
 $_POST["to"] = date("Y-m-d H:i:s");
-/*
-  $arr["2016-04-04"][] = array("Version 1"=>9);
-                $arr["2016-04-04"][] = array("Version 2"=>5);
-                print_r(current($arr["2016-04-04"])); 
-                print_r(next($arr["2016-04-04"])); 
-                print_r(next($arr["2016-04-04"])); 
-                 print_r(next($arr["2016-04-04"])); 
-                  print_r(next($arr["2016-04-04"])); 
-                   print_r(next($arr["2016-04-04"])); 
-                die;
-*/
+
 
 $adminselect = array("admin"=>"WHERE 1","adminone"=>"WHERE user_name LIKE '%..1%'","admintwo"=>"WHERE user_name LIKE '%..2%'","adminthree"=>"WHERE user_name LIKE '%..3%'","adminfour"=>"WHERE user_name LIKE '%..4%'","adminfour"=>"WHERE user_name LIKE '%..4%'","adminfive"=>"WHERE user_name LIKE '%..5%'","adminsix"=>"WHERE user_name LIKE '%..6%'","adminseven"=>"WHERE user_name LIKE '%..7%'","admineight"=>"WHERE user_name LIKE '%..8%'");
 
