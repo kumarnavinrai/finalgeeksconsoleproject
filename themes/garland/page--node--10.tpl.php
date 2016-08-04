@@ -29,10 +29,10 @@ $adminselect = array("admin"=>"WHERE 1","adminone"=>"WHERE user_name LIKE '%..1%
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
 
 
-if (in_array('reps', $user->roles) && strpos($uri,"/node/9")) { //print_r($_POST); die;
+if (in_array('reps', $user->roles) && strpos($uri,"/node/10")) { //print_r($_POST); die;
   $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
   //$qry = "SELECT * FROM appdata ".$adminselect[$host].$datequery;//." BETWEEN #07/04/1996# AND #07/09/1996#;";
-  echo $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
+  $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
 
