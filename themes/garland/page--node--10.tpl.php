@@ -1,4 +1,4 @@
-<?php  die("i am node 6");
+<?php  
 global $user;
 $url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $uri = $_SERVER["REQUEST_URI"];
@@ -6,6 +6,11 @@ $host = $_SERVER["HTTP_HOST"];
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
 
+//echo $start_week.' '.$end_week ;
+$_POST["from"] = date("Y-m-01");
+$_POST["to"] = date("Y-m-d");
+$_POST["to"] = $_POST["to"]." 23:59:59";
+//echo $date = date("Y-m-01").' To '.date("Y-m-d"); die;
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
                 $arr["2016-04-04"][] = array("Version 2"=>5);
@@ -24,7 +29,7 @@ $adminselect = array("admin"=>"WHERE 1","adminone"=>"WHERE user_name LIKE '%..1%
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
 
 
-if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST); die;
+if (in_array('reps', $user->roles) && strpos($uri,"/node/9")) { //print_r($_POST); die;
   $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
   //$qry = "SELECT * FROM appdata ".$adminselect[$host].$datequery;//." BETWEEN #07/04/1996# AND #07/09/1996#;";
   $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
@@ -32,7 +37,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   $result = db_query($qry);
 
   $datequeryone = isset($_POST["from"]) && isset($_POST["to"])? " AND uninstall_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
-  $qryone = "SELECT count(id) as noofinstalls, DATE_FORMAT(uninstall_date,'%Y-%m-%d') as unindate, version as version  FROM appdata ".$adminselect[$host].$datequeryone." GROUP BY version, unindate ORDER BY unindate, version";
+  $uninstalladminselecthost = str_replace('WHERE', "WHERE uninstall_date != '' AND ", $adminselect[$host]);
+  $qryone = "SELECT count(id) as noofinstalls, DATE_FORMAT(uninstall_date,'%Y-%m-%d') as unindate, version as version  FROM appdata ".$uninstalladminselecthost.$datequeryone." GROUP BY version, unindate ORDER BY unindate, version";
   //SELECT count(id) as noofinstalls, DATE_FORMAT(uninstall_date,'%Y-%m-%d') as unindate, version as version  FROM `appdata` GROUP BY version, unindate
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $resultone = db_query($qryone);
@@ -47,8 +53,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   $_SESSION["perm"]="a";
 }
 
+$_POST["to"] = $end_week;
 ?>
-  <?php print render($page['header']); ?>
+ <?php print render($page['header']); ?>
 
   <div id="wrapper">
     <div id="container" class="clearfix">
@@ -130,13 +137,18 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
             });
           });
         </script>  
-        <form id="formrange" class=".clsformrange" method="POST">
+        <form id="formrange" class=".clsformrange" method="POST" style="display:none;">
           <label for="from">From</label>
-          <input type="text" id="from" name="from">
+          <input type="text" id="from" name="from" value="<?php echo $_POST["from"]; ?>" >
           <label for="to">to</label>
-          <input type="text" id="to" name="to"> 
+          <input type="text" id="to" name="to" value="<?php echo $_POST["to"]; ?>" > 
           <button>Go</button>     
         </form>  
+        <h1>This Month's Installation Stats</h1>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
       </p>
       <p>
 
@@ -276,25 +288,13 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               </tr>
               <?php
 
-                $arr[$item->indate][] = array($item->version=>$item->noofinstalls);
+                $arr[$item->indate][$item->version] = $item->noofinstalls;
                 
                 
               ?>
                         
             <?php   } ?>
-            <!--
-                  $arr["2016-04-04"][] = array("Version 1"=>9);
-                $arr["2016-04-04"][] = array("Version 2"=>5);
-                print_r(current($arr["2016-04-04"])); 
-                print_r(next($arr["2016-04-04"])); 
-                print_r(next($arr["2016-04-04"])); 
-                 print_r(next($arr["2016-04-04"])); 
-                  print_r(next($arr["2016-04-04"])); 
-                   print_r(next($arr["2016-04-04"])); 
-                die;
-
-
-             -->
+     
             </table>  
             </div>
             <script type="text/javascript">
@@ -303,10 +303,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Dates', 'Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],
+                  ['Dates', 'Version 0','Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],
                   <?php if(isset($arr) && $arr){ ?>
                   <?php foreach($arr as $key => $val){ ?>  
-                    ['<?php echo $key; ?>', <?php $p = current($val); echo isset($p[1])?$p[1]:0; ?>, <?php $p = next($val); echo isset($p[2])?$p[2]:0; ?>, <?php $p = next($val); echo isset($p[3])?$p[3]:0; ?>, <?php $p = next($val); echo isset($p[4])?$p[4]:0; ?>, <?php $p = next($val); echo isset($p[5])?$p[5]:0; ?>, <?php $p = next($val); echo isset($p[6])?$p[6]:0; ?>, <?php $p = next($val); echo isset($p[7])?$p[7]:0; ?>, <?php $p = next($val); echo isset($p[8])?$p[8]:0; ?>],
+                    ['<?php echo $key; ?>', <?php $p = $val; echo isset($p[0])?$p[0]:0; ?>, <?php echo isset($p[1])?$p[1]:0; ?>, <?php echo isset($p[2])?$p[2]:0; ?>, <?php echo isset($p[3])?$p[3]:0; ?>, <?php echo isset($p[4])?$p[4]:0; ?>, <?php echo isset($p[5])?$p[5]:0; ?>, <?php echo isset($p[6])?$p[6]:0; ?>, <?php echo isset($p[7])?$p[7]:0; ?>, <?php echo isset($p[8])?$p[8]:0; ?>],
                   <?php } ?>  
                   <?php } ?>
                   
@@ -377,7 +377,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               </tr>
               <?php
                
-                $arr[$item->unindate][] = array($item->version=>$item->noofinstalls);
+                $arr[$item->indate][$item->version] = $item->noofinstalls;
                 
               ?> 
             <?php   } ?>
@@ -390,10 +390,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Dates', 'Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],
+                  ['Dates', 'Version 0','Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],
                   <?php if(isset($arr) && $arr){ ?>
                   <?php foreach($arr as $key => $val){ ?>  
-                    ['<?php echo $key; ?>', <?php $p = current($val); echo isset($p[1])?$p[1]:0; ?>, <?php $p = next($val); echo isset($p[2])?$p[2]:0; ?>, <?php $p = next($val); echo isset($p[3])?$p[3]:0; ?>, <?php $p = next($val); echo isset($p[4])?$p[4]:0; ?>, <?php $p = next($val); echo isset($p[5])?$p[5]:0; ?>, <?php $p = next($val); echo isset($p[6])?$p[6]:0; ?>, <?php $p = next($val); echo isset($p[7])?$p[7]:0; ?>, <?php $p = next($val); echo isset($p[8])?$p[8]:0; ?>],
+                    ['<?php echo $key; ?>', <?php $p = $val; echo isset($p[0])?$p[0]:0; ?>, <?php echo isset($p[1])?$p[1]:0; ?>, <?php echo isset($p[2])?$p[2]:0; ?>, <?php echo isset($p[3])?$p[3]:0; ?>, <?php echo isset($p[4])?$p[4]:0; ?>, <?php echo isset($p[5])?$p[5]:0; ?>, <?php echo isset($p[6])?$p[6]:0; ?>, <?php echo isset($p[7])?$p[7]:0; ?>, <?php echo isset($p[8])?$p[8]:0; ?>],
                   <?php } ?>  
                   <?php } ?>
                   
