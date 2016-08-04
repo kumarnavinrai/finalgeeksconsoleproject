@@ -376,7 +376,7 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
               </tr>
               <?php
                
-                $arr[$item->indate][$item->version] = $item->noofinstalls;
+                $arr[$item->unindate][$item->version] = $item->noofinstalls;
                 
               ?> 
             <?php   } ?>

@@ -362,7 +362,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
               </tr>
               <?php
                
-                $arr[$item->indate][$item->version] = $item->noofinstalls;
+                $arr[$item->unindate][$item->version] = $item->noofinstalls;
                 
               ?> 
             <?php   } ?>
