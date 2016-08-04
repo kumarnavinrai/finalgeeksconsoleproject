@@ -53,7 +53,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/9")) { //print_r($_POST
   $_SESSION["perm"]="a";
 }
 
-$_POST["to"] = $end_week;
+$_POST["to"] = date("Y-m-d");
 ?>
  <?php print render($page['header']); ?>
 
