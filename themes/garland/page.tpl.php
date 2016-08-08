@@ -198,7 +198,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 //$qry = "SELECT * FROM appdata ".$adminselect[$host].$datequery;//." BETWEEN #07/04/1996# AND #07/09/1996#;";
                 $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
                 //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
-                $result = db_query($qry);
+                $resulttotal = db_query($qry);
 
                 $_SESSION["perm"]="a";
               }
@@ -206,7 +206,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             ?>
               <h2>Total Install per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
              ?></h2>
-                      <?php if(isset($result) && $result) { ?>
+                      <?php if(isset($resulttotal) && $resulttotal) { ?>
                       <style>
                       table, th, td {
                           border: 1px solid black;
@@ -228,7 +228,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                             
                           </tr>
                         
-                        <?php   foreach($result as $item) {  ?>
+                        <?php   foreach($resulttotal as $item) {  ?>
                           <tr>
                             <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                             <td><?php echo $item->version; ?></td>
