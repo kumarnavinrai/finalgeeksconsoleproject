@@ -244,6 +244,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                  
                         </table>  
                         </div>
+                        <?php   } ?>
                     
           </p>
           <div id="custtable">
