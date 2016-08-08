@@ -182,6 +182,70 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           || <a href="/drup/node/10" title="Installation Stats">This Month Stats</a>
           || <a href="/drup/node/11" title="Installation Stats">Month Before Stats</a>
           </p>
+          <p>
+            <h2>No of Today's Installations</h2>
+            <?php
+              $_POST["from"] = date("Y-m-d",strtotime("-1 days"));
+              $_POST["to"] = date("Y-m-d H:i:s");
+
+
+              $adminselect = array("admin"=>"WHERE 1","adminone"=>"WHERE user_name LIKE '%..1%'","admintwo"=>"WHERE user_name LIKE '%..2%'","adminthree"=>"WHERE user_name LIKE '%..3%'","adminfour"=>"WHERE user_name LIKE '%..4%'","adminfour"=>"WHERE user_name LIKE '%..4%'","adminfive"=>"WHERE user_name LIKE '%..5%'","adminsix"=>"WHERE user_name LIKE '%..6%'","adminseven"=>"WHERE user_name LIKE '%..7%'","admineight"=>"WHERE user_name LIKE '%..8%'");
+              $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
+
+
+              if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) { //print_r($_POST); die;
+                $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
+                //$qry = "SELECT * FROM appdata ".$adminselect[$host].$datequery;//." BETWEEN #07/04/1996# AND #07/09/1996#;";
+                $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
+                //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
+                $result = db_query($qry);
+
+                $_SESSION["perm"]="a";
+              }
+
+            ?>
+              <h2>Total Install per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+             ?></h2>
+                      <?php if(isset($result) && $result) { ?>
+                      <style>
+                      table, th, td {
+                          border: 1px solid black;
+                          border-collapse: collapse;
+                      }
+                      th, td {
+                          padding: 15px;
+                      }
+                      </style>
+                      <div id="custtable">
+                        <table style="width:100%">
+                          
+                          <tr>
+                            <!--<th>Select</th>-->
+                            <th>Version</th>
+                            <th>Install Date</th>
+                            
+                            <th>No of Installs</th>
+                            
+                          </tr>
+                        
+                        <?php   foreach($result as $item) {  ?>
+                          <tr>
+                            <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
+                            <td><?php echo $item->version; ?></td>
+                            <td><?php echo $item->indate; ?></td>
+                           
+                            <td><?php echo $item->noofinstalls; ?></td>
+                             
+
+                          </tr>
+                         
+                                    
+                        <?php   } ?>
+                 
+                        </table>  
+                        </div>
+                    
+          </p>
           <div id="custtable">
             <?php if($result){ ?>
             <table style="width:100%">
