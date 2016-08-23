@@ -25,6 +25,10 @@ function my_page_function(){
               instance_id => $_POST['id']
             ))
           ->execute();
+    $resultdel = db_delete('ignorelist')
+      ->condition('instance_id', "C530D094-BEAE-4939-9981-E703E55D85B5")
+      //->condition('user_id', 5)
+      ->execute();      
     echo json_encode(array('success'=>$_POST['id']));die;
   return theme('my_custom_template');
 }
