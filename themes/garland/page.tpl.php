@@ -447,16 +447,17 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
         var a = $(this).parent('td').parent('tr');//prop("checked",true);
           a.find('td').each (function() {
             if ( $(this).children( "input" ).length ) {
-              var val = $(this).children( "input" ).attr('value');
+              var val = $(this).children( "input" ).val();
               if(val.indexOf("i") != -1){ 
                     val = val + "i";
                     $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', 'disabled');
-                  
+                    console.log($(this).children( "input" ).val());
               }else{
                     val = val.replace("i","");
                     $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', '');
+                    console.log($(this).children( "input" ).val());
               }
               
             }  
