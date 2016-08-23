@@ -287,7 +287,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                                           'source'=>$item->source,
                                           'type'=>$item->type,
                                           'version'=>$version,
-                                          'install_date' => $item->install_date 
+                                          'install_date' => date('Y-m-d',strtotime($item->install_date)) 
 
                                           );
                 }
