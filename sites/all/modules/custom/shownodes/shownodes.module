@@ -37,6 +37,12 @@ function shownodes_node_insert($node) {
               command => $cmdtoins
             ))
           ->execute();
+          $result = db_insert('noofmsg')
+          ->fields(array(
+              command => $cmdtoins
+            ))
+          ->execute();
+          
         }
       }  
       
