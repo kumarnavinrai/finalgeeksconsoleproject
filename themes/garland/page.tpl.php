@@ -531,7 +531,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       jQuery(".sortby").on('click',function(e){
       
         var sortby = $(this).attr('data');
-        jQuery('<form action="<?php echo $url; ?>"><input type="text" name="order_by" value="'+sortby+'" /></form>').appendTo('body').submit();
+        jQuery('<form method="POST" action="<?php echo $url; ?>"><input type="text" name="order_by" value="'+sortby+'" /><input type="submit" value="submit" /></form>').appendTo('body').submit();
       });
        
   });
