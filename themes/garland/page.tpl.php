@@ -624,19 +624,19 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           }
           
           console.log(selectedcheckboxes);
-          jQuery(".form-item-field-portnumber-und-0-value input").val(selectedcheckboxes);
+          jQuery("#edit-field-portnumber-und-0-value").val(selectedcheckboxes);
           /*alert(jQuery("input[name=clientports]:checked").map(function() {
               return this.value;
           }).get().join(","));*/
           //console.log(selectedcheckboxes);
 
-          if(jQuery(".form-item-field-portnumber-und-0-value input").val() == ""){ alert("Please select ports checkbox "); }
+          if(jQuery("#edit-field-portnumber-und-0-value").val() == ""){ alert("Please select ports checkbox "); }
 
           if(jQuery(".form-item-field-message-und-0-value input").val() == ""){ alert("Please enter message"); }
 
 
 
-          if(jQuery(".form-item-field-portnumber-und-0-value input").val() == "" || jQuery(".form-item-field-message-und-0-value input").val() == ""){ e.preventDefault(); }
+          if(jQuery("#edit-field-portnumber-und-0-value").val() == "" || jQuery(".form-item-field-message-und-0-value input").val() == ""){ e.preventDefault(); }
 
 
 
