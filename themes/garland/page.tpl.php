@@ -35,6 +35,16 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
   $_SESSION["perm"]="a";
+  $ignorearray = array();
+  $qryignore = "SELECT * FROM ignorelist";
+  $resultignore = db_query($qryignore);
+  if($resultignore){
+    foreach($resultignore as $kignore => $itemignore)  
+    {
+      $ignorearray[] = $itemignore->instance_id;              
+    }
+    print_r($ignorearray); die;
+  }
   /*foreach($result as $k => $item) 
               {
   echo "<pre>"; print_r($item);              
