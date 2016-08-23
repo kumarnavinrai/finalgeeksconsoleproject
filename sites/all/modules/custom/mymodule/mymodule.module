@@ -20,15 +20,19 @@ function mymodule_menu(){
  */
 function my_page_function(){
   // Call theme() function, so that Drupal includes the custom-page.tpl.php template
+    if($_POST['ignore'] == 1){
     $result = db_insert('ignorelist')
           ->fields(array(
               instance_id => $_POST['id']
             ))
           ->execute();
+    }
+    if($_POST['ignore'] == 0){      
     $resultdel = db_delete('ignorelist')
-      ->condition('instance_id', "C530D094-BEAE-4939-9981-E703E55D85B5")
+      ->condition('instance_id', $_POST['id'])
       //->condition('user_id', 5)
-      ->execute();      
+      ->execute();
+    }        
     echo json_encode(array('success'=>$_POST['id']));die;
   return theme('my_custom_template');
 }
