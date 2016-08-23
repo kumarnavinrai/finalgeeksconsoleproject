@@ -7,7 +7,9 @@ $hostfull = $host;
 $hostfornode = "http://admin.pc-optimiser.com:8000";
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
-
+if(isset($_POST['order_by'])){
+  $orderby = $_POST['order_by'];
+}
 if (in_array('reps', $user->roles) && !strpos($uri,"/node/add/messagetoclient")) {
    //echo "<pre>"; print_r($_SERVER); //die;
    //[HTTP_HOST] => admin.pc-optimiser.com
@@ -26,6 +28,10 @@ $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","a
 
 if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) {
   $qry = "SELECT * FROM temponline LEFT JOIN appdata ON temponline.instance_id=appdata.instance_id ".$adminselect[$host];
+  if(isset($orderby) && $orderby){
+    //ORDER BY column_name ASC
+    $qry .= " ORDER BY".$orderby." ASC";
+  }
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
   $_SESSION["perm"]="a";
@@ -265,8 +271,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <th>Port child</th>
                 <th>IP</th>
                 <th>Port parent</th>
-                <th>Country</th>
-                <th>Install Date</th>
+                <th class="sortby" data="country">Country</th>
+                <th class="sortby" data="install_date">Install Date</th>
               </tr>
             <?php 
               //change array here 
@@ -522,9 +528,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
       });
 
-
-
-          
+      jQuery(".sortby").on('click',function(e){
+        e.preventDefault();
+        var sortby = $(this).attr('data');
+        jQuery('<form action="<?php echo $url; ?>"><input type="text" name="order_by" value="'+sortby+'" /></form>').appendTo('body').submit();
+      });
+       
   });
 
 </script>
