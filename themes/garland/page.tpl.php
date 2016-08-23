@@ -56,7 +56,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
     
   }  
 
-  echo "<pre>"; print_r($noofmsgarray); die;
+  //echo "<pre>"; print_r($noofmsgarray); die;
   /*foreach($result as $k => $item) 
               {
   echo "<pre>"; print_r($item);              
@@ -386,14 +386,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 
                 <?php if($item['port']){ ?>
                 <td><input type="checkbox" class="clientportno" name="clientports" data-instance-id="<?php echo $item['instance_id']; ?>" data="<?php echo $item['instance_id']; ?>" value="<?php echo $item['port']; ?>"  <?php if($item['ignored']){ echo "disabled"; } ?> ></td>
-                <td><?php echo $item['user_name']; ?></td>
+                <td><?php echo $item['user_name']; ?> <?php echo isset($noofmsgarray[$item['instance_id']])?"(".$noofmsgarray[$item['instance_id']].")":""; ?></td>
                 <?php }elseif(!$item['port']){  ?>
                   <td><input type="checkbox" class="clientportno" name="clientportsoffmode"  value="" style="display:none;" ></td>  
                   <td></td>  
                 <?php } ?>
                 <?php if(isset($item['child'])){ ?>
                 <td><input type="checkbox" class="clientportnochild" name="clientportschild" data-instance-id="<?php echo $item['child']['instance_id']; ?>" data="<?php echo $item['child']['instance_id']; ?>" value="<?php echo $item['child']['port']; ?>" <?php if($item['child']['ignored']){ echo "disabled"; } ?> ></td>
-                <td><?php echo $item['child']['user_name']; ?></td>
+                <td><?php echo $item['child']['user_name']; ?><?php echo isset($noofmsgarray[$item['child']['instance_id']])?"(".$noofmsgarray[$item['child']['instance_id']].")":""; ?></td>
                 <td><?php echo $item['child']['port']; ?></td>
                 <?php }elseif(!isset($item['child'])){ ?>
                  <td></td>
