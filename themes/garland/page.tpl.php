@@ -30,7 +30,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
   $qry = "SELECT * FROM temponline LEFT JOIN appdata ON temponline.instance_id=appdata.instance_id ".$adminselect[$host];
   if(isset($orderby) && $orderby){
     //ORDER BY column_name ASC
-    $qry .= " ORDER BY".$orderby." ASC";
+    $qry .= " ORDER BY ".$orderby." ASC";
   }
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
