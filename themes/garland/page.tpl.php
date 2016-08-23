@@ -458,6 +458,22 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                     $(this).children( "input" ).attr('disabled', 'disabled');
                     $(this).children( "input" ).prop('disabled', true);
                     console.log("value setting after" + val);
+
+                    $.ajax({
+                      url: "http://<?php echo $url; ?>",
+                      data: {
+                         id: $(this).children( "input" ).attr('data-instance-id')
+                      },
+                      error: function() {
+                         console.log("Error in json");
+                      },
+                      dataType: 'jsonp',
+                      success: function(data) {
+                        console.log(data);
+                      },
+                      type: 'POST'
+                   });
+                    
               }else{
                     val = val.replace("i","");
                     console.log("value setting" + val);
