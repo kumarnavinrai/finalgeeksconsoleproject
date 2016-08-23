@@ -26,7 +26,7 @@ function shownodes_node_insert($node) {
       //$portno = $node->field_portnumber['und'][0]['value'];
       $msg = $node->field_message['und'][0]['value'];
       $portno = explode(",",$node->field_portnumber['und'][0]['value']);
-      //print_r($portno); 
+      print_r($portno); die;
       if(count($portno) && $msg && $portno)
       {
         foreach ($portno as $key => $value) 
