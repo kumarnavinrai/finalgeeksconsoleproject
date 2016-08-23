@@ -460,7 +460,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                     console.log("value setting after" + val);
 
                     $.ajax({
-                      url: "http://<?php echo $hostfull; ?>foo/bar",
+                      url: "http://<?php echo $hostfull; ?>/foo/bar",
                       data: {
                          id: $(this).children( "input" ).attr('data-instance-id'),
                          ignore:1

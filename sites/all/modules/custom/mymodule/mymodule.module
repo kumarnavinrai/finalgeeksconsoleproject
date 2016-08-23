@@ -22,10 +22,10 @@ function my_page_function(){
   // Call theme() function, so that Drupal includes the custom-page.tpl.php template
     $result = db_insert('ignorelist')
           ->fields(array(
-              instance_id => "ghfkhdkhdkhgdkgjh"
+              instance_id => $_POST['id']
             ))
           ->execute();
-    echo json_encode(array('success'=>$result));die;
+    echo json_encode(array('success'=>$_POST['id']));die;
   return theme('my_custom_template');
 }
    
