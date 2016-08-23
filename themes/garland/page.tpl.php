@@ -271,7 +271,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <th>Port child</th>
                 <th>IP</th>
                 <th>Port parent</th>
-                <th class="sortby" data="country">Country</th>
+                <th class="sortby" data="source">Country</th>
                 <th class="sortby" data="install_date">Install Date</th>
               </tr>
             <?php 
