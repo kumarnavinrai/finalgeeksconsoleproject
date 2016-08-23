@@ -31,17 +31,23 @@ function shownodes_node_insert($node) {
       {
         foreach ($portno as $key => $value) 
         {
+          if(strpos($value, "#")){
+            $e = explode("#", $value);  
+            $value = $e[0];
+            $result = db_insert('noofmsg')
+            ->fields(array(
+                command => $e[1]
+              ))
+            ->execute();
+          }
+          
           $cmdtoins = "console ".$value." ".$msg;
           $result = db_insert('cmdtorun')
           ->fields(array(
               command => $cmdtoins
             ))
           ->execute();
-          $result = db_insert('noofmsg')
-          ->fields(array(
-              command => $cmdtoins
-            ))
-          ->execute();
+          
           
         }
       }  
