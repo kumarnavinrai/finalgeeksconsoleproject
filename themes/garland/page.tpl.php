@@ -456,7 +456,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               }else{
                     val = val.replace("i","");
                     $(this).children( "input" ).attr('value', val);
-                    $(this).children( "input" ).attr('disabled', 'disabled');
+                    $(this).children( "input" ).attr('disabled', '');
               }
               
             }  
