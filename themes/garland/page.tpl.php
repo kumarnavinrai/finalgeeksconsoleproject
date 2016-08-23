@@ -35,11 +35,11 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
   $_SESSION["perm"]="a";
-  /*foreach($result as $k => $item) 
+  foreach($result as $k => $item) 
               {
   echo "<pre>"; print_r($item);              
               }
-  die;*/
+  die;
 }
 
 ?>
