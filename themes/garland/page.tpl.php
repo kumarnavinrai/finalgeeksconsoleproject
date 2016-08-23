@@ -370,7 +370,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <td><?php echo $item['ip']; ?></td>
                 <td><?php echo $item['port']; ?></td>
                 <td><?php echo $item['source']; ?></td>
-                <td><?php echo $item['install_date']; ?></td>
+                <td><?php echo isset($item['install_date'])?$item['install_date']:""; ?></td>
               </tr>
                         
             <?php   } ?>
@@ -529,7 +529,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       });
 
       jQuery(".sortby").on('click',function(e){
-        e.preventDefault();
+      
         var sortby = $(this).attr('data');
         jQuery('<form action="<?php echo $url; ?>"><input type="text" name="order_by" value="'+sortby+'" /></form>').appendTo('body').submit();
       });
