@@ -45,6 +45,18 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
     }
     
   }
+  $noofmsgarray = array();
+  $querynoofmsg = 'SELECT command,COUNT(command) as no FROM noofmsg GROUP BY command';
+  $resultnoofmsg = db_query($querynoofmsg);
+  if($resultnoofmsg){
+    foreach($resultnoofmsg as $knoofmsg => $itemnoofmsg)  
+    {
+      $noofmsgarray[$itemnoofmsg->command] = $itemnoofmsg->no;              
+    }
+    
+  }  
+
+  echo "<pre>"; print_r($noofmsgarray); die;
   /*foreach($result as $k => $item) 
               {
   echo "<pre>"; print_r($item);              
