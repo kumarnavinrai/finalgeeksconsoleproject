@@ -265,6 +265,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               <tr>
                 <th>Select Both</th>
                 <th>Select</th>
+                <th>Ignore</th>
                 <th>PC Name Parent</th>
                 <th>Select</th>
                 <th>PC Name Child</th>
@@ -351,6 +352,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             <?php   foreach($arrayofparents as $item) { ?>
               <tr>
                 <td><a href="#" class="selboth">Both</a></td>
+                <td><a href="#" class="ignore">Ignore</a></td>
+                
                 <?php if($item['port']){ ?>
                 <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
                 <td><?php echo $item['user_name']; ?></td>
@@ -436,6 +439,32 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       jQuery("#edit-title").val(" Client");
       jQuery("#edit-body-und-0-value").val("test");
       jQuery("#edit-submit").val("Send");
+
+      
+
+      $(".ignore").on('click',function(e){
+        e.preventDefault();
+        var a = $(this).parent('td').parent('tr');//prop("checked",true);
+          a.find('td').each (function() {
+            if ( $(this).children( "input" ).length ) {
+              if($(this).children( "input" ).is(":checked")){ 
+                    var val = $(this).children( "input" ).attr('value');
+                    val = val + "i";
+                    $(this).children( "input" ).attr('value', val);
+                  
+              }else{
+                  
+                  var val = $(this).children( "input" ).attr('value');
+                    val = val + "i";
+                    $(this).children( "input" ).attr('value', val);
+              }
+              
+            }  
+          });  
+        //alert(a);
+        // alert("gldkfsgfkdjhg");
+
+      });
 
       $(".selboth").on('click',function(e){
         e.preventDefault();
