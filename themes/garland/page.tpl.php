@@ -43,7 +43,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
     {
       $ignorearray[] = $itemignore->instance_id;              
     }
-    print_r($ignorearray); die;
+    
   }
   /*foreach($result as $k => $item) 
               {
@@ -293,13 +293,18 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               { 
                 
                 $version = substr($item->user_name, strpos($item->user_name, '..')+2, 1);
-                
+                $portno = $item->port;
+                $ignored = 0;
+                if(in_array($item->instance_id, $ignorearray)){ $portno = $portno."i"; $ignored = 1;}
+
                 if($item->type == 1)
                 {  
+
                   $arrayofparents[$k]=array(
                                           'id'=>$item->id,
                                           'user_name'=>$item->user_name,
-                                          'port'=>$item->port,
+                                          'port'=>$portno,
+                                          'ignored'=>$ignored, 
                                           'ip'=>$item->ip,
                                           'source'=>$item->source,
                                           'type'=>$item->type,
@@ -314,7 +319,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                    $arrayofchilds[$k]=array(
                                           'id'=>$item->id,
                                           'user_name'=>$item->user_name,
-                                          'port'=>$item->port,
+                                          'port'=>$portno,
+                                          'ignored'=>$ignored,
                                           'ip'=>$item->ip,
                                           'source'=>$item->source,
                                           'instance_id' =>$item->instance_id,
@@ -367,14 +373,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <td><a href="#" class="ignore">Ignore</a></td>
                 
                 <?php if($item['port']){ ?>
-                <td><input type="checkbox" class="clientportno" name="clientports" data-instance-id="<?php echo $item['instance_id']; ?>" value="<?php echo $item['port']; ?>"></td>
+                <td><input type="checkbox" class="clientportno" name="clientports" data-instance-id="<?php echo $item['instance_id']; ?>" value="<?php echo $item['port']; ?>"  <?php if($item['ignored']){ echo "disabled"; } ?> ></td>
                 <td><?php echo $item['user_name']; ?></td>
                 <?php }elseif(!$item['port']){  ?>
                   <td><input type="checkbox" class="clientportno" name="clientportsoffmode"  value="" style="display:none;" ></td>  
                   <td></td>  
                 <?php } ?>
                 <?php if(isset($item['child'])){ ?>
-                <td><input type="checkbox" class="clientportnochild" name="clientportschild" data-instance-id="<?php echo $item['child']['instance_id']; ?>" value="<?php echo $item['child']['port']; ?>"></td>
+                <td><input type="checkbox" class="clientportnochild" name="clientportschild" data-instance-id="<?php echo $item['child']['instance_id']; ?>" value="<?php echo $item['child']['port']; ?>" <?php if($item['child']['ignored']){ echo "disabled"; } ?> ></td>
                 <td><?php echo $item['child']['user_name']; ?></td>
                 <td><?php echo $item['child']['port']; ?></td>
                 <?php }elseif(!isset($item['child'])){ ?>
