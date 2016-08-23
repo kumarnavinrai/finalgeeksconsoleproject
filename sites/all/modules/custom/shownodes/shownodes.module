@@ -54,7 +54,7 @@ function shownodes_node_insert($node) {
       
         $_SESSION["message"] = 'Messages sent successfully.';
         drupal_set_message('Messages sent successfully.');
-      $node->field_message['und'][0]['value'] = "000";
+      $node->field_portnumber['und'][0]['value'] = "000";
       break;
     
   }
