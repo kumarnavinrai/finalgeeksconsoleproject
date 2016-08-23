@@ -35,11 +35,11 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
   $_SESSION["perm"]="a";
-  foreach($result as $k => $item) 
+  /*foreach($result as $k => $item) 
               {
   echo "<pre>"; print_r($item);              
               }
-  die;
+  die;*/
 }
 
 ?>
@@ -294,6 +294,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                                           'source'=>$item->source,
                                           'type'=>$item->type,
                                           'version'=>$version,
+                                          'instance_id' =>$item->instance_id,
                                           'install_date' => date('Y-m-d',strtotime($item->install_date)) 
 
                                           );
@@ -306,6 +307,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                                           'port'=>$item->port,
                                           'ip'=>$item->ip,
                                           'source'=>$item->source,
+                                          'instance_id' =>$item->instance_id,
                                           'type'=>$item->type,
                                           'version'=>$version  
 
@@ -355,14 +357,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <td><a href="#" class="ignore">Ignore</a></td>
                 
                 <?php if($item['port']){ ?>
-                <td><input type="checkbox" class="clientportno" name="clientports" value="<?php echo $item['port']; ?>"></td>
+                <td><input type="checkbox" class="clientportno" name="clientports" data-instance-id="<?php echo $item['instance_id']; ?>" value="<?php echo $item['port']; ?>"></td>
                 <td><?php echo $item['user_name']; ?></td>
                 <?php }elseif(!$item['port']){  ?>
-                  <td><input type="checkbox" class="clientportno" name="clientportsoffmode" value="" style="display:none;" ></td>  
+                  <td><input type="checkbox" class="clientportno" name="clientportsoffmode"  value="" style="display:none;" ></td>  
                   <td></td>  
                 <?php } ?>
                 <?php if(isset($item['child'])){ ?>
-                <td><input type="checkbox" class="clientportnochild" name="clientportschild" value="<?php echo $item['child']['port']; ?>"></td>
+                <td><input type="checkbox" class="clientportnochild" name="clientportschild" data-instance-id="<?php echo $item['child']['instance_id']; ?>" value="<?php echo $item['child']['port']; ?>"></td>
                 <td><?php echo $item['child']['user_name']; ?></td>
                 <td><?php echo $item['child']['port']; ?></td>
                 <?php }elseif(!isset($item['child'])){ ?>
