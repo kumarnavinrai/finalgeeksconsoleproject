@@ -20,7 +20,12 @@ function mymodule_menu(){
  */
 function my_page_function(){
   // Call theme() function, so that Drupal includes the custom-page.tpl.php template
-	echo json_encode(array('success'=>111));die;
+    $result = db_insert('ignorelist')
+          ->fields(array(
+              instance_id => "ghfkhdkhdkhgdkgjh"
+            ))
+          ->execute();
+    echo json_encode(array('success'=>$result));die;
   return theme('my_custom_template');
 }
    
