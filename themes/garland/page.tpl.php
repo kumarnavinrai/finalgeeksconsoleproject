@@ -460,9 +460,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                     console.log("value setting after" + val);
 
                     $.ajax({
-                      url: "http://<?php echo $url; ?>",
+                      url: "http://<?php echo $hostfull; ?>foo/bar",
                       data: {
-                         id: $(this).children( "input" ).attr('data-instance-id')
+                         id: $(this).children( "input" ).attr('data-instance-id'),
+                         ignore:1
                       },
                       error: function() {
                          console.log("Error in json");
@@ -473,7 +474,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                       },
                       type: 'POST'
                    });
-                    
+
               }else{
                     val = val.replace("i","");
                     console.log("value setting" + val);
