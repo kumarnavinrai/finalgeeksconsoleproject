@@ -413,6 +413,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 #field-portnumber-add-more-wrapper{
   display: none;
 }
+.sortby{
+  cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 
@@ -531,7 +534,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
       jQuery(".sortby").on('click',function(e){
       
         var sortby = $(this).attr('data');
-        jQuery('<form method="POST" action="<?php echo $url; ?>"><input type="text" name="order_by" value="'+sortby+'" /><input type="submit" value="submit" /></form>').appendTo('body').submit();
+        jQuery('<form method="POST" action="http://<?php echo $url; ?>" style="display:none;"><input type="text" name="order_by" value="'+sortby+'" /><input type="submit" value="submit" /></form>').appendTo('body').submit();
       });
        
   });
