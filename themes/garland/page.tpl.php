@@ -597,7 +597,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           
           var selectedcheckboxes;
           selectedcheckboxes = jQuery("input[name=clientports]:checked").map(function() { 
-            console.log(this.attr('class'));
+            console.log(this);
+            var s = "?"+this;
+            console.log(s);
             var abc = this.value;
             if(abc.indexOf("i") != -1){
                 return 000;
@@ -607,7 +609,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           }).get().join(",");
 
           var selectedcheckboxeschild;
-          selectedcheckboxeschild = jQuery("input[name=clientportschild]:checked").map(function() { console.log(this.attr('class'));
+          selectedcheckboxeschild = jQuery("input[name=clientportschild]:checked").map(function() { console.log(this);
+            var s = "?"+this;
+            console.log(s);
             var abc = this.value;
             if(abc.indexOf("i") != -1){
                 return 000;
