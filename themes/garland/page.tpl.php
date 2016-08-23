@@ -448,16 +448,19 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           a.find('td').each (function() {
             if ( $(this).children( "input" ).length ) {
               var val = $(this).children( "input" ).val();
+              console.log("value initials" + val);
               if(val.indexOf("i") != -1){ 
                     val = val + "i";
+                    console.log("value setting" + val);
                     $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', 'disabled');
-                    console.log($(this).children( "input" ).val());
+                    console.log("value setting after" + val);
               }else{
                     val = val.replace("i","");
+                    console.log("value setting" + val);
                     $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', '');
-                    console.log($(this).children( "input" ).val());
+                    console.log("value setting after" + val);
               }
               
             }  
