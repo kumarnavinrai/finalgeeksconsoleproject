@@ -25,10 +25,11 @@ $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","a
 //SELECT * FROM temponline LEFT JOIN appdata ON temponline.ip = appdata.ip WHERE status = 1 AND version = 1
 
 if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) {
-  $qry = "SELECT * FROM temponline ".$adminselect[$host];
+  $qry = "SELECT * FROM temponline LEFT JOIN appdata ON temponline.instance_id=appdata.instance_id ".$adminselect[$host];
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
   $_SESSION["perm"]="a";
+  echo "<pre>"; print_r($result); die;
 }
 
 ?>
