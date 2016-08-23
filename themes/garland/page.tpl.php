@@ -460,7 +460,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                     console.log("value setting after" + val);
 
                     $.ajax({
-                      url: "http://<?php echo $hostfull; ?>/foo/bar",
+                      url: "http://<?php echo $hostfull; ?>/drup/foo/bar",
                       data: {
                          id: $(this).children( "input" ).attr('data-instance-id'),
                          ignore:1
@@ -483,6 +483,21 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                     $(this).children( "input" ).prop('disabled', false);
                     $(this).children( "input" ).removeAttr("disabled");
                     console.log("value setting after" + val);
+                    $.ajax({
+                      url: "http://<?php echo $hostfull; ?>/drup/foo/bar",
+                      data: {
+                         id: $(this).children( "input" ).attr('data-instance-id'),
+                         ignore:0
+                      },
+                      error: function() {
+                         console.log("Error in json");
+                      },
+                      dataType: 'jsonp',
+                      success: function(data) {
+                        console.log(data);
+                      },
+                      type: 'POST'
+                   });
               }
               
             }  
