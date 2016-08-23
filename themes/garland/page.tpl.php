@@ -511,11 +511,20 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           
           var selectedcheckboxes;
           selectedcheckboxes = jQuery("input[name=clientports]:checked").map(function() { console.log(this.value);
+            var abc = this.value;
+            if(strpos(abc, "i")){
+                return 000;
+            }
               return this.value;
+            
           }).get().join(",");
 
           var selectedcheckboxeschild;
           selectedcheckboxeschild = jQuery("input[name=clientportschild]:checked").map(function() { console.log(this.value);
+            var abc = this.value;
+            if(strpos(abc, "i")){
+                return 000;
+            }
               return this.value;
           }).get().join(",");
           if(selectedcheckboxeschild && selectedcheckboxes){
@@ -551,4 +560,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
        
   });
 
+function strpos (haystack, needle, offset) {
+  var i = (haystack+'').indexOf(needle, (offset || 0));
+  return i === -1 ? false : i;
+}
 </script>
