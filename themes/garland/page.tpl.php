@@ -449,7 +449,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
             if ( $(this).children( "input" ).length ) {
               var val = $(this).children( "input" ).val();
               console.log("value initials" + val);
-              if(val.indexOf("i") != -1){ 
+              if(val.indexOf("i") == -1){ 
                     val = val + "i";
                     console.log("value setting" + val);
                     $(this).children( "input" ).val(val);
