@@ -450,12 +450,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               var val = $(this).children( "input" ).attr('value');
               if(val.indexOf("i") != -1){ 
                     val = val + "i";
-                    $(this).children( "input" ).attr('value', val);
+                    $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', 'disabled');
                   
               }else{
                     val = val.replace("i","");
-                    $(this).children( "input" ).attr('value', val);
+                    $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', '');
               }
               
