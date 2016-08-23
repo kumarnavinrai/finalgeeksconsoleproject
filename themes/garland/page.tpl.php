@@ -454,12 +454,15 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                     console.log("value setting" + val);
                     $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', 'disabled');
+                    $(this).children( "input" ).prop('disabled', true);
                     console.log("value setting after" + val);
               }else{
                     val = val.replace("i","");
                     console.log("value setting" + val);
                     $(this).children( "input" ).val(val);
                     $(this).children( "input" ).attr('disabled', '');
+                    $(this).children( "input" ).prop('disabled', false);
+                    $(this).children( "input" ).removeAttr("disabled");
                     console.log("value setting after" + val);
               }
               
