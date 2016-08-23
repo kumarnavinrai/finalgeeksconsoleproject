@@ -29,11 +29,11 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
   $_SESSION["perm"]="a";
-  foreach($result as $k => $item) 
+  /*foreach($result as $k => $item) 
               {
   echo "<pre>"; print_r($item);              
               }
-  die;
+  die;*/
 }
 
 ?>
@@ -266,6 +266,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <th>IP</th>
                 <th>Port parent</th>
                 <th>Country</th>
+                <th>Install Date</th>
               </tr>
             <?php 
               //change array here 
@@ -285,7 +286,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                                           'ip'=>$item->ip,
                                           'source'=>$item->source,
                                           'type'=>$item->type,
-                                          'version'=>$version  
+                                          'version'=>$version,
+                                          'install_date' => $item->install_date 
 
                                           );
                 }
@@ -362,6 +364,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <td><?php echo $item['ip']; ?></td>
                 <td><?php echo $item['port']; ?></td>
                 <td><?php echo $item['source']; ?></td>
+                <td><?php echo $item['install_date']; ?></td>
               </tr>
                         
             <?php   } ?>
