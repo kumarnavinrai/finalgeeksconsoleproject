@@ -271,8 +271,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <th>Port child</th>
                 <th>IP</th>
                 <th>Port parent</th>
-                <th class="sortby" data="temponline.source">Country<div class="checkmark">L</div></th>
-                <th class="sortby" data="install_date">Install Date<div class="checkmark">L</div></th>
+                <th class="sortby sourcecss" data="temponline.source">Country</th>
+                <th class="sortby install_datecss" data="install_date">Install Date</th>
               </tr>
             <?php 
               //change array here 
@@ -416,12 +416,18 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 .sortby{
   cursor: pointer;
 }
-.checkmark {
-  font-family: arial;
-  -ms-transform: scaleX(-1) rotate(-35deg); /* IE 9 */
-    -webkit-transform: scaleX(-1) rotate(-35deg); /* Chrome, Safari, Opera */
-    transform: scaleX(-1) rotate(-35deg);
-}
+<?php if(isset($orderby) && $orderby == "temponline.source"){ ?>
+  .sourcecss{
+    text-decoration: underline;
+  }
+<?php } ?>
+<?php if(isset($orderby) && $orderby == "install_date"){ ?>
+  .install_datecss{
+    text-decoration: underline;
+  }
+<?php } ?>
+
+
 </style>
 <script type="text/javascript">
 
