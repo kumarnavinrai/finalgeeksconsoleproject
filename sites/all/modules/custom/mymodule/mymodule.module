@@ -28,10 +28,11 @@ function my_page_function(){
           ->execute();
     }
     if($_POST['ignore'] == 0){      
-    $resultdel = db_delete('ignorelist')
-      ->condition('instance_id', $_POST['id'])
-      //->condition('user_id', 5)
-      ->execute();
+    //$resultdel = db_delete('ignorelist')->condition('instance_id', $_POST['id'])->execute();
+    $q = "DELETE FROM ignorelist WHERE instance_id = '".$_POST['id']."'";
+    db_query($q);
+
+      echo json_encode(array('success'=>$q));die;
     }        
     echo json_encode(array('success'=>$_POST['id']));die;
   return theme('my_custom_template');
