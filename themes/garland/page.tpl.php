@@ -215,7 +215,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           || <a href="/drup/node/11" title="Installation Stats">Month Before Stats</a>
           </p>
           <p>
-            <h2>No of Today's Installations</h2>
+            
             <?php
               $_POST["from"] = date("Y-m-d",strtotime("-1 days"));
               $_POST["to"] = date("Y-m-d H:i:s");
