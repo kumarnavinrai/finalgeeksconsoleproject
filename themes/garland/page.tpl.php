@@ -77,9 +77,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
-
+/*
         // create a new websocket
-        var socket = io.connect('<?php echo $hostfornode; ?>');
+        var socket = io.connect('<?php //echo $hostfornode; ?>');
         // on message received we print all the data inside the #container div
         socket.on('notification', function (data) { 
         var usersList = '<table style="width:100%"><tr><th>Select</th><th>PC Name</th><th>IP</th><th>Port</th><th>Country</th></tr>';
@@ -94,13 +94,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
          //console.log(checkboxstatearray); 
         //var usersList = "<dl>";
         $.each(data.users,function(index,user){ //console.log(index); console.log(user);
-            /*usersList += "<dt>" + user.user_name + "</dt>\n" +
-                         "<dd>" + user.ip + "\n" +
-                         "<dd>" + user.port + "\n" +
-                         "</dd>";*/
+            
             var str = user.user_name;             
-            var n = str.indexOf("<?php echo $adminselectforjs[$host]; ?>");
-            var m = str.indexOf("<?php echo strtolower($adminselectforjs[$host]); ?>");             
+            var n = str.indexOf("<?php //echo $adminselectforjs[$host]; ?>");
+            var m = str.indexOf("<?php //echo strtolower($adminselectforjs[$host]); ?>");             
            
                 if(n != -1 || m != -1){
                   usersList +=  '<tr>';
@@ -127,7 +124,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
         if(diff != -15){  $('#custtable').html(usersList); }
 
         //$('time').html('Last Update:' + data.time);
-      });
+      }); */
     </script>
   
     <div id="container" class="clearfix">
