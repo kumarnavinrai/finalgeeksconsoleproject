@@ -32,6 +32,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
     //ORDER BY column_name ASC
     $qry .= " ORDER BY ".$orderby." ASC";
   }
+    $qry .=" GROUP BY temponline.instance_id";
+
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
   $_SESSION["perm"]="a";
