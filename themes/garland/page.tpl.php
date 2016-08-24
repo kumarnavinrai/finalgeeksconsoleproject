@@ -19,7 +19,7 @@ if (in_array('reps', $user->roles) && !strpos($uri,"/node/add/messagetoclient"))
    die();
 }
 
-$adminselect = array("admin"=>"WHERE status = 1 ","adminone"=>"WHERE status = 1 AND user_name LIKE '%..1%'","admintwo"=>"WHERE status = 1 AND  user_name LIKE '%..2%'","adminthree"=>"WHERE status = 1 AND user_name LIKE '%..3%'","adminfour"=>"WHERE status = 1 AND user_name LIKE '%..4%'","adminfive"=>"WHERE status = 1 AND user_name LIKE '%..5%'","adminsix"=>"WHERE status = 1 AND user_name LIKE '%..6%'","adminseven"=>"WHERE status = 1 AND user_name LIKE '%..7%'","admineight"=>"WHERE status = 1 AND user_name LIKE '%..8%'");
+$adminselect = array("admin"=>"WHERE status = 1 ","adminone"=>"WHERE status = 1 AND temponline.user_name LIKE '%..1%'","admintwo"=>"WHERE status = 1 AND  temponline.user_name LIKE '%..2%'","adminthree"=>"WHERE status = 1 AND temponline.user_name LIKE '%..3%'","adminfour"=>"WHERE status = 1 AND temponline.user_name LIKE '%..4%'","adminfive"=>"WHERE status = 1 AND temponline.user_name LIKE '%..5%'","adminsix"=>"WHERE status = 1 AND temponline.user_name LIKE '%..6%'","adminseven"=>"WHERE status = 1 AND temponline.user_name LIKE '%..7%'","admineight"=>"WHERE status = 1 AND temponline.user_name LIKE '%..8%'");
 
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
