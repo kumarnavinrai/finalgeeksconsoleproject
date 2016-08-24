@@ -57,13 +57,13 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
     }
     
   }  
-
+/*
   //echo "<pre>"; print_r($noofmsgarray); die;
   foreach($result as $k => $item) 
               {
   echo "<pre>"; print_r($item);              
               }
-  die;
+  die;*/
 }
 
 ?>
