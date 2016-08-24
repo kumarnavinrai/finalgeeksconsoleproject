@@ -46,7 +46,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/10")) { //print_r($_POS
 
 //SELECT AVG(age) as avgage, version as version FROM appdata GROUP BY version
 
- $qrytwo = "SELECT AVG(age) as avgage, version as version FROM appdata ".$adminselect[$host].$datequery." GROUP BY version";
+ $qrytwo = "SELECT AVG(age) as avgage, version as version FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' GROUP BY version";
   //SELECT count(id) as noofinstalls, DATE_FORMAT(uninstall_date,'%Y-%m-%d') as unindate, version as version  FROM `appdata` GROUP BY version, unindate
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $resulttwo = db_query($qrytwo);
