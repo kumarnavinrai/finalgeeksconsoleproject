@@ -266,7 +266,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                             <td><?php echo $item->version; ?></td>
                             <td><?php echo $item->indate; ?></td>
                            
-                            <td><?php echo $item->noofinstalls; ?></td>
+                            <td><?php echo $item->noofinstalls/2; ?></td>
                              
 
                           </tr>
