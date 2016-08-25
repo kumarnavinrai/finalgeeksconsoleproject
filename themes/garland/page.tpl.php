@@ -247,6 +247,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
               }
 
             ?>
+              <h2>No of total instalation today : <span class="todayinstall"></span></h2>
               <h2>Total Install per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
              ?></h2>
                       <?php if(isset($resulttotal) && $resulttotal) { ?>
@@ -270,7 +271,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                             <th>No of Installs</th>
                           </tr>
                         
-                        <?php   foreach($resulttotal as $item) {  ?>
+                        <?php $totalinstall = 0;  foreach($resulttotal as $item) {  ?>
                           <tr>
                             <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                             <td><?php echo $item->version; ?></td>
@@ -283,7 +284,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                           </tr>
                          
                                     
-                        <?php   } ?>
+                        <?php $totalinstall = $totalinstall + $item->noofinstalls;  } ?>
                  
                         </table>  
                         </div>
@@ -669,6 +670,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
         var sortby = $(this).attr('data');
         jQuery('<form method="POST" action="http://<?php echo $url; ?>" style="display:none;"><input type="text" name="order_by" value="'+sortby+'" /><input type="submit" value="submit" /></form>').appendTo('body').submit();
       });
+
+      jQuery(".todayinstall"),html("<?php echo $totalinstall; ?>");
        
   });
 
