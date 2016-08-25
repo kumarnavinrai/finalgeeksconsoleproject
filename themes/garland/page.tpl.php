@@ -273,7 +273,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                           <tr>
                             <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                             <td><?php echo $item->version; ?></td>
-                            <td><?php echo $item->type==1:"Parent":"Child"; ?></td>
+                            <td><?php echo $item->type==1?"Parent":"Child"; ?></td>
                             <td><?php echo $item->indate; ?></td>
                             <td><?php echo $item->noofinstalls; ?></td>
 
