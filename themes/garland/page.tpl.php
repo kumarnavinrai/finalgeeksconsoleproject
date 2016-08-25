@@ -235,12 +235,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 $resulttotal = db_query($qry);
 
 
-                //echo "<pre>"; print_r($noofmsgarray); die;
+                /*//echo "<pre>"; print_r($noofmsgarray); die;
                 foreach($resulttotal as $k => $item) 
                             {
                 echo "<pre>"; print_r($item);              
                             }
-                die;
+                die;*/
 
                 $_SESSION["perm"]="a";
               }
@@ -264,19 +264,19 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                           <tr>
                             <!--<th>Select</th>-->
                             <th>Version</th>
+                            <th>Type</th>
                             <th>Install Date</th>
-                            
                             <th>No of Installs</th>
-                            
                           </tr>
                         
                         <?php   foreach($resulttotal as $item) {  ?>
                           <tr>
                             <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                             <td><?php echo $item->version; ?></td>
+                            <td><?php echo $item->type==1:"Parent":"Child"; ?></td>
                             <td><?php echo $item->indate; ?></td>
-                           
-                            <td><?php echo $item->noofinstalls/2; ?></td>
+                            <td><?php echo $item->noofinstalls; ?></td>
+
                              
 
                           </tr>
