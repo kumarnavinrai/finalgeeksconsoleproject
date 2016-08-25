@@ -18,7 +18,9 @@ $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","a
 if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST); die;
   $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
   //$qry = "SELECT * FROM appdata ".$adminselect[$host].$datequery;//." BETWEEN #07/04/1996# AND #07/09/1996#;";
-  $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
+  //$qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, indate ORDER BY indate, version";
+  //$qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version,type as type  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, type, indate ORDER BY indate, version";
+  $qry = "SELECT count(id) as noofinstalls, DATE_FORMAT(install_date,'%Y-%m-%d') as indate, version as version,type as type  FROM appdata ".$adminselect[$host].$datequery." GROUP BY version, type, indate ORDER BY indate, version";
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $result = db_query($qry);
 
@@ -250,37 +252,35 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
           }
           </style>
           <div id="custtable">
-            <table style="width:100%">
+             <table style="width:100%">
               
               <tr>
                 <!--<th>Select</th>-->
-                <th>Version</th>
-                <th>Install Date</th>
-                
-                <th>No of Installs</th>
+                 <th>Version</th>
+                  <th>Type</th>
+                  <th>Install Date</th>
+                  <th>No of Installs</th>
                 
               </tr>
             
             <?php   foreach($result as $item) {  ?>
               <tr>
-                <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                 <td><?php echo $item->version; ?></td>
+                <td><?php echo $item->type==1?"Parent":"Child"; ?></td>
                 <td><?php echo $item->indate; ?></td>
-               
                 <td><?php echo $item->noofinstalls; ?></td>
-                 
-
               </tr>
               <?php
-
-                $arr[$item->indate][$item->version] = $item->noofinstalls;
+                if($item->type==1){
+                  $arr[$item->indate][$item->version] = $item->noofinstalls;
+                }  
                 
                 
               ?>
                         
             <?php   } ?>
-     
-            </table>  
+           
+            </table> 
             </div>
             <script type="text/javascript">
               //google.charts.load('current', {'packages':['corechart']});
