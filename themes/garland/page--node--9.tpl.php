@@ -273,37 +273,35 @@ $_POST["to"] = $end_week;
           }
           </style>
           <div id="custtable">
-            <table style="width:100%">
+             <table style="width:100%">
               
               <tr>
                 <!--<th>Select</th>-->
-                <th>Version</th>
-                <th>Install Date</th>
-                
-                <th>No of Installs</th>
+                 <th>Version</th>
+                  <th>Type</th>
+                  <th>Install Date</th>
+                  <th>No of Installs</th>
                 
               </tr>
             
             <?php   foreach($result as $item) {  ?>
               <tr>
-                <!--<td><input type="checkbox" class="clientportno" name="clientports" value="<?php //echo $item->port; ?>"></td>-->
                 <td><?php echo $item->version; ?></td>
+                <td><?php echo $item->type==1?"Parent":"Child"; ?></td>
                 <td><?php echo $item->indate; ?></td>
-               
                 <td><?php echo $item->noofinstalls; ?></td>
-                 
-
               </tr>
               <?php
-
-                $arr[$item->indate][$item->version] = $item->noofinstalls;
+                if($item->type==1){
+                  $arr[$item->indate][$item->version] = $item->noofinstalls;
+                }  
                 
                 
               ?>
                         
             <?php   } ?>
-     
-            </table>  
+           
+            </table> 
             </div>
             <script type="text/javascript">
               //google.charts.load('current', {'packages':['corechart']});
