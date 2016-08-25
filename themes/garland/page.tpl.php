@@ -1,15 +1,6 @@
 <?php
-global $user;
-$url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
-$uri = $_SERVER["REQUEST_URI"];
-$host = $_SERVER["HTTP_HOST"];
-$hostfull = $host;
-$hostfornode = "http://admin.pc-optimiser.com:8000";
-$host = explode(".",$_SERVER["HTTP_HOST"]);
-$host = current($host);
-if(isset($_POST['order_by'])){
-  $orderby = $_POST['order_by'];
-}
+
+
 if (in_array('reps', $user->roles) && !strpos($uri,"/node/add/messagetoclient")) {
    //echo "<pre>"; print_r($_SERVER); //die;
    //[HTTP_HOST] => admin.pc-optimiser.com
@@ -17,55 +8,6 @@ if (in_array('reps', $user->roles) && !strpos($uri,"/node/add/messagetoclient"))
    //header("Location: http://".$host.".pc-optimiser.com/node/add/messagetoclient");
    header("Location: http://".$hostfull."/drup/node/add/messagetoclient");
    die();
-}
-
-$adminselect = array("admin"=>"WHERE status = 1 ","adminone"=>"WHERE status = 1 AND temponline.user_name LIKE '%..1%'","admintwo"=>"WHERE status = 1 AND  temponline.user_name LIKE '%..2%'","adminthree"=>"WHERE status = 1 AND temponline.user_name LIKE '%..3%'","adminfour"=>"WHERE status = 1 AND temponline.user_name LIKE '%..4%'","adminfive"=>"WHERE status = 1 AND temponline.user_name LIKE '%..5%'","adminsix"=>"WHERE status = 1 AND temponline.user_name LIKE '%..6%'","adminseven"=>"WHERE status = 1 AND temponline.user_name LIKE '%..7%'","admineight"=>"WHERE status = 1 AND temponline.user_name LIKE '%..8%'");
-
-
-$adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
-
-//SELECT * FROM temponline LEFT JOIN appdata ON temponline.ip = appdata.ip WHERE status = 1 AND version = 1
-
-if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) {
-  $qry = "SELECT * FROM temponline LEFT JOIN appdata ON temponline.instance_id=appdata.instance_id ".$adminselect[$host];
-  $qry .=" GROUP BY temponline.instance_id ";
-
-  if(isset($orderby) && $orderby){
-    //ORDER BY column_name ASC
-    $qry .= " ORDER BY ".$orderby." ASC";
-  }
-  
-
-  //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
-  $result = db_query($qry);
-  $_SESSION["perm"]="a";
-  $ignorearray = array();
-  $qryignore = "SELECT * FROM ignorelist";
-  $resultignore = db_query($qryignore);
-  if($resultignore){
-    foreach($resultignore as $kignore => $itemignore)  
-    {
-      $ignorearray[] = $itemignore->instance_id;              
-    }
-    
-  }
-  $noofmsgarray = array();
-  $querynoofmsg = 'SELECT command,COUNT(command) as no FROM noofmsg GROUP BY command';
-  $resultnoofmsg = db_query($querynoofmsg);
-  if($resultnoofmsg){
-    foreach($resultnoofmsg as $knoofmsg => $itemnoofmsg)  
-    {
-      $noofmsgarray[$itemnoofmsg->command] = $itemnoofmsg->no;              
-    }
-    
-  }  
-/*
-  //echo "<pre>"; print_r($noofmsgarray); die;
-  foreach($result as $k => $item) 
-              {
-  echo "<pre>"; print_r($item);              
-              }
-  die;*/
 }
 
 ?>
