@@ -474,7 +474,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   idate = $tds.eq(2).text();
               // do something with productId, product, Quantity
               console.log('Row ' + (i + 1) + ':\nversion: ' + version
-                    + '\type: ' + type
+                    + '\/type: ' + type
                     + '\idate: ' + idate);
           });
         }, 1000);
