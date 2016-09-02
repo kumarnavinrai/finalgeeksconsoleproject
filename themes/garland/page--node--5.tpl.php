@@ -477,6 +477,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
                   idate = $tds.eq(2).text();
+                  console.log(lastrow);
               if(lastrow !== undefined){
                 var $tdsl = lastrow.find('td'),
                   versionl = $tdsl.eq(0).text(),
