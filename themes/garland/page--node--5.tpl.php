@@ -476,7 +476,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   idate = $tds.eq(2).text();
               if(i > 1)
               {
-                console.log(table.find('tr').eq(1).html());
+                console.log("datenow--"+idate);
+                console.log("dateprev--"+idatel);
                 if(idate == idatel && versionl == version && typel == 'Parent' && type == 'Child')
                 {
                   var currentrowhtml = $(this).html();
