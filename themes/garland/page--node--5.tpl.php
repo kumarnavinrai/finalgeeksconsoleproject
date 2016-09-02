@@ -475,7 +475,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   type = $tds.eq(1).text(),
                   idate = $tds.eq(2).text();
               if(i > 0){
-                console.log(table.eq(0).html());
+                console.log(table.find('tr').eq(0).html());
               }    
 
               var $tds = $(this).find('td'),
