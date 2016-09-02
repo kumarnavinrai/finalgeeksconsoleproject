@@ -466,34 +466,28 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
         setTimeout(function(){
           
           var table = $('.noofinstalltbl');
-          var lastrow;
-          var currentrow;
 
           table.find('tr').each(function (i) {
-            
-              currentrow = $(this);
-              console.log(currentrow.html());
+            console.log($(this).html());
+
               var $tds = $(this).find('td'),
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
                   idate = $tds.eq(2).text();
-                  console.log(lastrow);
-              if(lastrow !== undefined){
-                var $tdsl = lastrow.find('td'),
-                  versionl = $tdsl.eq(0).text(),
-                  typel = $tdsl.eq(1).text(),
-                  idatel = $tdsl.eq(2).text();
-                  console.log('Row ' + (i + 1) + ':\nversionl: ' + versionl
-                    + '\/typel: ' + typel
-                    + '\idatel: ' + idatel);
-              }      
+              if(i > 0){
+                console.log(table.eq(0).html());
+              }    
 
+              var $tds = $(this).find('td'),
+                  versionl = $tds.eq(0).text(),
+                  typel = $tds.eq(1).text(),
+                  idatel = $tds.eq(2).text();
+               
 
               // do something with productId, product, Quantity
               console.log('Row ' + (i + 1) + ':\nversion: ' + version
                     + '\/type: ' + type
                     + '\idate: ' + idate);
-              lastrow = $(this);
           });
         }, 1000);
     });
