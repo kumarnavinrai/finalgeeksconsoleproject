@@ -162,7 +162,7 @@ $_POST["to"] = date('Y-m-d',strtotime('last day of last month'));
           <script type="text/javascript">
             google.charts.load('current', {packages: ['corechart']});     
           </script>
-          <div id="containerone" style="width: 550px; height: 400px; margin: 0 auto"></div>
+          <div id="containerone" style="width: 550px; height: 400px; margin: 0 auto;display:none;"></div>
          
 
           <style>
