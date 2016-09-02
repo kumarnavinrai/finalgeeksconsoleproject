@@ -463,6 +463,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   </div> <!-- /#wrapper -->
   <script type="text/javascript">
     $(document).ready(function(){
-        alert("dfsdf");
+        setTimeout(function(){
+          alert($('#custtable').html());
+        }, 1000);
     });
   </script>
