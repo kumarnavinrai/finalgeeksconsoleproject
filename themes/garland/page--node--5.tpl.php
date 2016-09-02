@@ -301,6 +301,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               </tr>
               <?php
                 if($item->type==1){
+                  echo in_array($item->version, $adminselectforgraphsecondstring[$host]);
+                  echo "---".$item->version."----".$adminselectforgraphsecondstring[$host]."----";
                   if(in_array($item->version, $adminselectforgraphsecondstring[$host]))
                   $arr[$item->indate][$item->version] = $item->noofinstalls;
                 }  
