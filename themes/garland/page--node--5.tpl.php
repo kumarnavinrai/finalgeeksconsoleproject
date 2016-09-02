@@ -474,8 +474,18 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
                   idate = $tds.eq(2).text();
-              if(i > 1){
+              if(i > 1)
+              {
                 console.log(table.find('tr').eq(1).html());
+                if(idate == idatel && versionl == version && typel == 'Parent' && type == 'Child')
+                {
+                  var currentrowhtml = $(this).html();
+                  var lastrowindex = i-1;
+                  var lastrow = table.find('tr').eq(lastrowindex);
+                  var lastrowhtml = lastrow.html();
+                  $(this).html(lastrowhtml);
+                  lastrow.html(currentrowhtml);
+                }
               }    
 
               var $tds = $(this).find('td'),
