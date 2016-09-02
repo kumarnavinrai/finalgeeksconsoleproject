@@ -149,7 +149,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           
 
           <?php if(isset($resulttwo) && $resulttwo) { ?>
-          <h2>Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+          <h2 style="display:none;">Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
           <script type="text/javascript">
@@ -167,7 +167,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               padding: 15px;
           }
           </style>
-          <h2>Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+          <h2 style="display:none;" >Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
           <div id="custtable" style="display:none;">
             <table style="width:100%">
@@ -233,7 +233,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           </p>
         <br>
           <br>
-            <hr>
+            <hr style="display:none;">
           <br>
           <br>
       <p>
@@ -339,14 +339,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <br>
           <br>
         <p>
-        <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+        <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
       <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
       
       <p>
         <div id="curve_chart_1" style="width: 900px; height: 500px;display:none;"></div>
       </p>
-          <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+          <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
 
           <?php if(isset($resultone) && $resultone) { ?>
