@@ -240,7 +240,7 @@ $_POST["to"] = date("Y-m-d");
           </p>
         <br>
           <br>
-            <hr>
+            <hr style="display:none;">
           <br>
           <br>
       <p>
