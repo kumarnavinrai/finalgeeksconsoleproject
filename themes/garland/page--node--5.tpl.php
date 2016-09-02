@@ -466,9 +466,13 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
         setTimeout(function(){
           
           var table = $('.noofinstalltbl');
+          var lastrow;
+          var currentrow;
 
           table.find('tr').each(function (i) {
-            console.log($(this).html());
+            
+              currentrow = $(this);
+              console.log(currentrow.html());
               var $tds = $(this).find('td'),
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
@@ -477,6 +481,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               console.log('Row ' + (i + 1) + ':\nversion: ' + version
                     + '\/type: ' + type
                     + '\idate: ' + idate);
+              lastrow = $(this);
           });
         }, 1000);
     });
