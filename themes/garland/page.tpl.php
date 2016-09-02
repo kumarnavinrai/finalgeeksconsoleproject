@@ -291,6 +291,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                         <?php   } ?>
                     
           </p>
+          <h1>Current connections.</h1>
           <div id="custtable">
             <?php if($result){ ?>
             <table style="width:100%">
