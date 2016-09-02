@@ -280,7 +280,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               padding: 15px;
           }
           </style>
-          <div id="custtable">
+          <div id="custtable" class="noofinstalltbl">
             <table style="width:100%">
               
               <tr>
@@ -465,7 +465,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
     $(document).ready(function(){
         setTimeout(function(){
           
-          var table = $('#custtable');
+          var table = $('.noofinstalltbl');
 
           table.find('tr').each(function (i) {
               var $tds = $(this).find('td'),
