@@ -483,7 +483,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               {
                 console.log("datenow--"+idate);
                 console.log("dateprev--"+idatel);
-                if(idate == idatel && versionl == version && typel == 'Parent' && type == 'Child')
+                if(idate == idatel && versionl == version && typel == 'Child' && type == 'Parent')
                 {
                   var currentrowhtml = $(this).html();
                   var lastrowindex = i-1;
