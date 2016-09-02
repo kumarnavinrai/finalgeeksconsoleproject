@@ -32,7 +32,7 @@ $adminselectforgraph = array("admin"=>"['Dates', 'Version 1', 'Version 2', 'Vers
                              "adminseven"=>"['Dates', 'Version 7'],",
                              "admineight"=>"['Dates', 'Version 8'],"
                              );
-$adminselectforgraph[$host]
+
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
 
