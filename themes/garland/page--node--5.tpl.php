@@ -464,7 +464,19 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   <script type="text/javascript">
     $(document).ready(function(){
         setTimeout(function(){
-          alert($('#custtable').html());
+          
+          var table = $('#custtable');
+
+          table.find('tr').each(function (i) {
+              var $tds = $(this).find('td'),
+                  version = $tds.eq(0).text(),
+                  type = $tds.eq(1).text(),
+                  idate = $tds.eq(2).text();
+              // do something with productId, product, Quantity
+              console.log('Row ' + (i + 1) + ':\nversion: ' + version
+                    + '\type: ' + type
+                    + '\idate: ' + idate);
+          });
         }, 1000);
     });
   </script>
