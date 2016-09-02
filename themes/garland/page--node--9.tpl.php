@@ -183,7 +183,7 @@ $_POST["to"] = $end_week;
           </style>
           <h2 style="display:none;">Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
-          <div id="custtable">
+          <div id="custtable" style="display:none;">
             <table style="width:100%">
               
               <tr>
