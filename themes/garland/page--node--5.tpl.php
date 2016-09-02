@@ -468,6 +468,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           var table = $('.noofinstalltbl');
 
           table.find('tr').each(function (i) {
+            console.log($(this).html());
               var $tds = $(this).find('td'),
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
