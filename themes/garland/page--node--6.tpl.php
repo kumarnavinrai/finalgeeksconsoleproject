@@ -133,9 +133,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
         </form>  
         <h1>Todays Installation Stats</h1>
         <br/>
-        <br/>
-        <br/>
-        <br/>
+       
       </p>
       <p>
           <?php if(isset($resulttwo) && $resulttwo) { ?>
@@ -211,7 +209,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
           </p>
         <br>
           <br>
-            <hr>
+            <hr style="display:none;">
           <br>
           <br>
       <p>
@@ -301,12 +299,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
           <br>
           <br>
         <p>
-        <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+        <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
       <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
       
       <p>
-        <div id="curve_chart_1" style="width: 900px; height: 500px"></div>
+        <div id="curve_chart_1" style="width: 900px; height: 500px;diaply:none;"></div>
       </p>
           <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
