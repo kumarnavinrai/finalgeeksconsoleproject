@@ -461,3 +461,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
 
     </div> <!-- /#container -->
   </div> <!-- /#wrapper -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        alert("dfsdf");
+    });
+  </script>
