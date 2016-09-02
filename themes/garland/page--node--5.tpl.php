@@ -322,7 +322,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  <?php echo $adminselectforgraph[$host]; ?>
+                  ['Dates', 'Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],
                   <?php if(isset($arr) && $arr){ ?>
                   <?php foreach($arr as $key => $val){  ?>  
                     ['<?php echo $key; ?>', <?php $p = $val; echo isset($p[0])?$p[0]:0; ?>, <?php echo isset($p[1])?$p[1]:0; ?>, <?php echo isset($p[2])?$p[2]:0; ?>, <?php echo isset($p[3])?$p[3]:0; ?>, <?php echo isset($p[4])?$p[4]:0; ?>, <?php echo isset($p[5])?$p[5]:0; ?>, <?php echo isset($p[6])?$p[6]:0; ?>, <?php echo isset($p[7])?$p[7]:0; ?>, <?php echo isset($p[8])?$p[8]:0; ?>],
