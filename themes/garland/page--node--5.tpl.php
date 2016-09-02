@@ -155,7 +155,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <script type="text/javascript">
             google.charts.load('current', {packages: ['corechart']});     
           </script>
-          <div id="containerone" style="width: 550px; height: 400px; margin: 0 auto"></div>
+          <div id="containerone" style="width: 550px; height: 400px; margin: 0 auto;display:none;"></div>
          
 
           <style>
@@ -169,7 +169,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           </style>
           <h2>Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
-          <div id="custtable">
+          <div id="custtable" style="display:none;">
             <table style="width:100%">
               
               <tr>
