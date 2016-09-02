@@ -477,6 +477,17 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
                   idate = $tds.eq(2).text();
+              if(lastrow !== undefined){
+                var $tdsl = lastrow.find('td'),
+                  versionl = $tdsl.eq(0).text(),
+                  typel = $tdsl.eq(1).text(),
+                  idatel = $tdsl.eq(2).text();
+                  console.log('Row ' + (i + 1) + ':\nversionl: ' + versionl
+                    + '\/typel: ' + typel
+                    + '\idatel: ' + idatel);
+              }      
+
+
               // do something with productId, product, Quantity
               console.log('Row ' + (i + 1) + ':\nversion: ' + version
                     + '\/type: ' + type
