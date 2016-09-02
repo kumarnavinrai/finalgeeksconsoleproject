@@ -147,9 +147,7 @@ $_POST["to"] = date("Y-m-d");
         </form>  
         <h1>This Month's Installation Stats</h1>
         <br/>
-        <br/>
-        <br/>
-        <br/>
+      
       </p>
       <p>
 
@@ -158,13 +156,13 @@ $_POST["to"] = date("Y-m-d");
           
 
           <?php if(isset($resulttwo) && $resulttwo) { ?>
-          <h2>Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+          <h2 style="display:none;">Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
           <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
           <script type="text/javascript">
             google.charts.load('current', {packages: ['corechart']});     
           </script>
-          <div id="containerone" style="width: 550px; height: 400px; margin: 0 auto"></div>
+          <div id="containerone" style="width: 550px; height: 400px; margin: 0 auto;display:none;"></div>
          
 
           <style>
@@ -176,9 +174,9 @@ $_POST["to"] = date("Y-m-d");
               padding: 15px;
           }
           </style>
-          <h2>Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+          <h2 style="display:none;">Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
-          <div id="custtable">
+          <div id="custtable" style="display:none;">
             <table style="width:100%">
               
               <tr>
@@ -332,14 +330,14 @@ $_POST["to"] = date("Y-m-d");
           <br>
           <br>
         <p>
-        <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+        <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
       <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
       
       <p>
-        <div id="curve_chart_1" style="width: 900px; height: 500px"></div>
+        <div id="curve_chart_1" style="width: 900px; height: 500px;display:none;"></div>
       </p>
-          <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+          <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
 
           <?php if(isset($resultone) && $resultone) { ?>
@@ -352,7 +350,7 @@ $_POST["to"] = date("Y-m-d");
               padding: 15px;
           }
           </style>
-          <div id="custtable">
+          <div id="custtable" style="display:none;">
             <table style="width:100%">
               
               <tr>
