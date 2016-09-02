@@ -466,7 +466,11 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
         setTimeout(function(){
           
           var table = $('.noofinstalltbl');
-
+          var $tdsl;
+          var versionl;
+          var typel;
+          var idatel;
+              
           table.find('tr').each(function (i) {
            
 
@@ -474,6 +478,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
                   idate = $tds.eq(2).text();
+
               if(i > 1)
               {
                 console.log("datenow--"+idate);
@@ -491,10 +496,10 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                 }
               }    
 
-              var $tds = $(this).find('td'),
-                  versionl = $tds.eq(0).text(),
-                  typel = $tds.eq(1).text(),
-                  idatel = $tds.eq(2).text();
+                  $tdsl = $(this).find('td');
+                  versionl = $tdsl.eq(0).text();
+                  typel = $tdsl.eq(1).text();
+                  idatel = $tdsl.eq(2).text();
                
 
               
