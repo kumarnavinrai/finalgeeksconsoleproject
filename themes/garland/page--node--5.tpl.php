@@ -468,7 +468,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           var table = $('.noofinstalltbl');
 
           table.find('tr').each(function (i) {
-            console.log($(this).html());
+           
 
               var $tds = $(this).find('td'),
                   version = $tds.eq(0).text(),
@@ -483,6 +483,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   var lastrowindex = i-1;
                   var lastrow = table.find('tr').eq(lastrowindex);
                   var lastrowhtml = lastrow.html();
+                  console.log("lastrowhtml--"+lastrowhtml);
+                  console.log("currentrowhtml--"+currentrowhtml);
                   $(this).html(lastrowhtml);
                   lastrow.html(currentrowhtml);
                 }
@@ -494,10 +496,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   idatel = $tds.eq(2).text();
                
 
-              // do something with productId, product, Quantity
-              console.log('Row ' + (i + 1) + ':\nversion: ' + version
-                    + '\/type: ' + type
-                    + '\idate: ' + idate);
+              
           });
         }, 1000);
     });
