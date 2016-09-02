@@ -305,7 +305,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                   $arr[$item->indate][$item->version] = $item->noofinstalls;
                 }  
                 
-                
+                print_r($arr);
               ?>
                         
             <?php   } ?>
