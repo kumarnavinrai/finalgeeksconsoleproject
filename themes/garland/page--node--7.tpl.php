@@ -146,9 +146,7 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
         </form>  
         <h1>Yesterday's Installation Stats</h1>
         <br/>
-        <br/>
-        <br/>
-        <br/>
+       
       </p>
       <p>
 
@@ -241,7 +239,7 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
           </p>
         <br>
           <br>
-            <hr>
+            <hr style="display:none;">
           <br>
           <br>
       <p>
