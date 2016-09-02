@@ -33,6 +33,17 @@ $adminselectforgraph = array("admin"=>"['Dates', 'Version 0','Version 1', 'Versi
                              "admineight"=>"['Dates', 'Version 8'],"
                              );
 
+$adminselectforgraphsecondstring = array("admin"=>array(0,1,2,3,4,5,6,7,8,9),
+                             "adminone"=>array(1),
+                             "admintwo"=>array(2),
+                             "adminthree"=>array(3),
+                             "adminfour"=>array(4),
+                             "adminfive"=>array(5),
+                             "adminsix"=>array(6),
+                             "adminseven"=>array(7),
+                             "admineight"=>array(8)
+                             );
+
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
 
@@ -290,6 +301,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               </tr>
               <?php
                 if($item->type==1){
+                  if(in_array($item->version, $adminselectforgraphsecondstring[$host]))
                   $arr[$item->indate][$item->version] = $item->noofinstalls;
                 }  
                 
