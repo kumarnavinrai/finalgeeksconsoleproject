@@ -284,7 +284,7 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
               padding: 15px;
           }
           </style>
-          <div id="custtable">
+          <div id="custtable" class="noofinstalltbl">
             <table style="width:100%">
               
               <tr>
@@ -448,3 +448,49 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
 
     </div> <!-- /#container -->
   </div> <!-- /#wrapper -->
+  <script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function(){
+          
+          var table = $('.noofinstalltbl');
+          var $tdsl;
+          var versionl;
+          var typel;
+          var idatel;
+              
+          table.find('tr').each(function (i) {
+           
+
+              var $tds = $(this).find('td'),
+                  version = $tds.eq(0).text(),
+                  type = $tds.eq(1).text(),
+                  idate = $tds.eq(2).text();
+
+              if(i > 1)
+              {
+                console.log("datenow--"+idate);
+                console.log("dateprev--"+idatel);
+                if(idate == idatel && versionl == version && typel == 'Child' && type == 'Parent')
+                {
+                  var currentrowhtml = $(this).html();
+                  var lastrowindex = i-1;
+                  var lastrow = table.find('tr').eq(lastrowindex);
+                  var lastrowhtml = lastrow.html();
+                  console.log("lastrowhtml--"+lastrowhtml);
+                  console.log("currentrowhtml--"+currentrowhtml);
+                  $(this).html(lastrowhtml);
+                  lastrow.html(currentrowhtml);
+                }
+              }    
+
+                  $tdsl = $(this).find('td');
+                  versionl = $tdsl.eq(0).text();
+                  typel = $tdsl.eq(1).text();
+                  idatel = $tdsl.eq(2).text();
+               
+
+              
+          });
+        }, 1000);
+    });
+  </script>
