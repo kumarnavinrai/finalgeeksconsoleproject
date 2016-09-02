@@ -306,7 +306,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
       <p>
         <div id="curve_chart_1" style="width: 900px; height: 500px;diaply:none;"></div>
       </p>
-          <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
+          <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
 
           <?php if(isset($resultone) && $resultone) { ?>
@@ -319,7 +319,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
               padding: 15px;
           }
           </style>
-          <div id="custtable">
+          <div id="custtable" style="display:none;">
             <table style="width:100%">
               
               <tr>
