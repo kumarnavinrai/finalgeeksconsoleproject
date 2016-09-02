@@ -344,7 +344,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
       <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
       
       <p>
-        <div id="curve_chart_1" style="width: 900px; height: 500px"></div>
+        <div id="curve_chart_1" style="width: 900px; height: 500px;display:none;"></div>
       </p>
           <h2>Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
@@ -359,7 +359,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               padding: 15px;
           }
           </style>
-          <div id="custtable">
+          <div id="custtable" style="display:none;" >
             <table style="width:100%">
               
               <tr>
