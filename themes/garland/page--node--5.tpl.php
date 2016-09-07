@@ -158,9 +158,6 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
            
           <p>
           <a href="/drup/node/add/messagetoclient" title="messagetoclient">Message to client</a>
-          || 
-          <a href="http://<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
-          
           </p>
           <p>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -295,6 +292,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
       <p>
         <div id="curve_chart" style="width: 900px; height: 500px"></div>
       </p>
+      <p>
+          
+          
+          <a href="http://<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
+          
+          </p>
         <h2>Total Install per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
           <?php if(isset($result) && $result) { ?>
