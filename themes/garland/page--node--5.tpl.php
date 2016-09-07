@@ -105,7 +105,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
            }
            
            $left_rec = $rec_count - ($page * $rec_limit);
-           $sql = $qrydetailsofinstall." LIMIT $offset, $rec_limit";
+           echo $sql = $qrydetailsofinstall." LIMIT $offset, $rec_limit";
               
            $retval = db_query( $sql );
            
