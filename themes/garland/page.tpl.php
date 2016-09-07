@@ -309,11 +309,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                           type = $tds.eq(1).text(),
                           idate = $tds.eq(2).text();
                           console.log(type+"---"+version+"---"+idate);
-                          if(type.toLowerCase() == tocheckporc){
-                            $(this).css("display", "none");
-                          }  
+                          
                       });
-                      
+
                        $('table.temponlinetbl tbody tr td').eq(4).hide(); 
                        $('table.temponlinetbl tbody tr td').eq(5).hide(); 
 
