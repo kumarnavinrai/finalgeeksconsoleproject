@@ -85,7 +85,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
     // loop over the rows, outputting them
     foreach ($rows as $key => $value) {
        
-     $row = array($value->source,$value->install_date,$value->user_name,$value->ip); 
+     $row = array('"'.$value->source.'"','"'.$value->install_date.'"','"'.$value->user_name.'"','"'.$value->ip.'"'); 
     
      print_r($row);
     }
