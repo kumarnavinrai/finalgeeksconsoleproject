@@ -7,7 +7,9 @@ $host = $_SERVER["HTTP_HOST"];
 $hostfull = $host;
 $hostfornode = "http://admin.pc-optimiser.com:8000";
 $host = explode(".",$_SERVER["HTTP_HOST"]);
+$checkhost = $host;
 $host = current($host);
+$hostforparentchild = next($checkhost);//'children';'parent';//next($checkhost);
 if(isset($_POST['order_by'])){
   $orderby = $_POST['order_by'];
 }
@@ -260,7 +262,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                           padding: 15px;
                       }
                       </style>
-                      <div id="custtable">
+                      <div id="custtable" class="noofinstalltbl">
                         <table style="width:100%">
                           
                           <tr>
@@ -680,4 +682,8 @@ function strpos (haystack, needle, offset) {
   var i = (haystack+'').indexOf(needle, (offset || 0));
   return i === -1 ? false : i;
 }
+
+$(document).ready(function(){
+  alert("<?php echo $hostforparentchild; ?>");
+});
 </script>
