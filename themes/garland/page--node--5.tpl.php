@@ -403,7 +403,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <br>
           <br>
             <?php
-  $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
+  echo $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
   $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
 
   /* Get total number of records */
