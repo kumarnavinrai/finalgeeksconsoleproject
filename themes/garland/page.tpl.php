@@ -307,6 +307,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                           var $tds = $(this).find('td');
                           $tds.eq(5).hide();
                           $tds.eq(6).hide();  
+                          var $tdsth = $(this).find('th');
+                          $tdsth.eq(5).hide();
+                          $tdsth.eq(6).hide();  
                       });
 
                     
