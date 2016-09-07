@@ -6,8 +6,9 @@ $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
 $hostoriginal = $host;
 $host = explode(".",$_SERVER["HTTP_HOST"]);
+$checkhost = $host;
 $host = current($host);
-echo $hostforparentchild = next($host);
+echo $hostforparentchild = next($checkhost);
 die;
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
