@@ -621,6 +621,23 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           });
         }, 1000);
 
-        alert("<?php echo $hostforparentchild; ?>");
-    });
+        setTimeout(function(){
+          
+          var table = $('.noofinstalltbl');
+          var porc = "<?php echo $hostforparentchild; ?>";
+          table.find('tr').each(function (i) {
+           
+
+              var $tds = $(this).find('td'),
+                  version = $tds.eq(0).text(),
+                  type = $tds.eq(1).text(),
+                  idate = $tds.eq(2).text();
+                  console.log(type+"---"+version+"---"+idate);
+           });
+
+
+
+        });
+        
+    },1000);
   </script>
