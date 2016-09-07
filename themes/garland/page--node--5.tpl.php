@@ -82,7 +82,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   $_SESSION["perm"]="a";
 
   if(isset($_REQUEST['exporttocsv'])){
-    $qrydetailsofinstallcsv = "SELECT source,install_date,user_name,ip FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
+    $qrydetailsofinstallcsv = "SELECT source,install_date,user_name,ip FROM appdata ".$adminselect[$host].$datequery."  ";
     
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename=data.csv');
