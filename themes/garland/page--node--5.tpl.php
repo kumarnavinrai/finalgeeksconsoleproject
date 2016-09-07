@@ -75,7 +75,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   $_SESSION["perm"]="a";
 
   $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
-  $qrydetailsofinstallcount = "SELECT count(id) FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
+  $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
 
   /* Get total number of records */
          $rec_limit = 10;
@@ -85,7 +85,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
          //if there is any count of record then do anything else
          if( $retval ) 
          {
-          echo "<pre>"; print_r($retval); die;
+          echo "<pre>"; print_r($retval); 
+
+          die;
            $row = mysql_fetch_array($retval, MYSQL_NUM );
            $rec_count = $row[0];
            
