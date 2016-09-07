@@ -47,7 +47,7 @@ $adminselectforgraphsecondstring = array("admin"=>array(0,1,2,3,4,5,6,7,8,9),
 
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
-echo $hostoriginal; die;
+echo $hostoriginal.$uri; die;
 
 if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST); die;
   $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
