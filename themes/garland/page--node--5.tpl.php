@@ -48,8 +48,8 @@ $adminselectforgraphsecondstring = array("admin"=>array(0,1,2,3,4,5,6,7,8,9),
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
 $fullurlforpagination =  $hostoriginal.$uri; 
-echo $fullurlforpagination =  reset(explode("?",$fullurlforpagination));  
-die;
+$fullurlforpagination =  reset(explode("?",$fullurlforpagination));  
+
 
 if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST); die;
   $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
@@ -120,13 +120,13 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
            
            if( $page > 0 ) {
               $last = $page - 2;
-              echo '<a href = "?page = $last">Last 10 Records</a> |';
-              echo '<a href = "?page = $page">Next 10 Records</a>';
+              echo '<a href = "'.$fullurlforpagination.'?page = $last">Last 10 Records</a> |';
+              echo '<a href = "'.$fullurlforpagination.'?page = $page">Next 10 Records</a>';
            }else if( $page == 0 ) {
-              echo '<a href = "?page = $page">Next 10 Records</a>';
+              echo '<a href = "'.$fullurlforpagination.'?page = $page">Next 10 Records</a>';
            }else if( $left_rec < $rec_limit ) {
               $last = $page - 2;
-              echo '<a href = "?page = $last">Last 10 Records</a>';
+              echo '<a href = "'.$fullurlforpagination.'?page = $last">Last 10 Records</a>';
            }
 
        }//if count check if ends
