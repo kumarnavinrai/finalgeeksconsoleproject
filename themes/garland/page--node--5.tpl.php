@@ -11,9 +11,9 @@ $host = current($host);
 $hostforparentchild = 'parent';//'children';//next($checkhost);
 $parentchildquery = "";
 if($hostforparentchild == 'parent'){
-  $parentchildquery = " AND type = 1"
+  $parentchildquery = " AND type = 1";
 }elseif ($hostforparentchild == 'children') {
-  $parentchildquery = " AND type = 2"
+  $parentchildquery = " AND type = 2";
 }
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
