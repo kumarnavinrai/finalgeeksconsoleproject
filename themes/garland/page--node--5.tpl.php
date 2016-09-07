@@ -111,7 +111,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
            while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
               echo "EMP ID :{$row['emp_id']}  <br> ".
                  "EMP NAME : {$row['emp_name']} <br> ".
-                 EMP SALARY : {$row['emp_salary']} <br> ".
+                 "EMP SALARY : {$row['emp_salary']} <br> ".
                  "--------------------------------<br>";
            }
            
