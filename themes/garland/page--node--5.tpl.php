@@ -79,7 +79,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
 
   /* Get total number of records */
          $rec_limit = 10;
-         $sql = $qrydetailsofinstallcount;
+         $sql = $qrydetailsofinstall;
          $retval = db_query( $sql );
          
          //if there is any count of record then do anything else
