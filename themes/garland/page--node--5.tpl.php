@@ -365,6 +365,11 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <br>
           <br>
             <hr>
+            <br>
+          <br>
+          <h1>Details of instalations</h1>
+          <br>
+          <br>
             <?php
   $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
   $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
@@ -396,16 +401,28 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
            $sql = $qrydetailsofinstall." LIMIT $offset, $rec_limit";
               
            $retval = db_query( $sql );
-           
-           
+            echo '<div id="dcustid">';
+            echo '<table style="width:100%">';
+            echo '<tr>';
+                echo '<th>Country</th>';
+                echo '<th>Install Date</th>';
+                echo '<th>PC Name</th>';
+                echo '<th>IP Address</th>';
+            echo '</tr>';
            
            foreach($retval as $item) {
-              echo "country :".$item->source."  <br> ".
-                 "install date : ".$item->install_date." <br> ".
-                 "user name : ".$item->user_name." <br> ".
-                 "ip address : ".$item->ip." <br> ".
-                 "--------------------------------<br>";
+              
+            echo '<tr>';
+            echo '<td>'.$item->source.'</td>';
+            echo '<td>'.$item->install_date.'</td>';
+            echo '<td>'.$item->user_name.'</td>';
+            echo '<td>'.$item->ip.'</td>';
+            echo '</tr>';
+                         
+            
            }
+           echo '</table>';
+           
 
            $total_pages = ceil($rec_count / $rec_limit);
            if( $page > 0 ) {
@@ -421,7 +438,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
               $last = $page - 2;
               echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a>';
            }
-
+           echo '</div>';
        }//if count check if ends
 }
 
