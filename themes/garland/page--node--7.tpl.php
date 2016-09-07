@@ -3,8 +3,17 @@ global $user;
 $url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
+$hostoriginal = $host;
 $host = explode(".",$_SERVER["HTTP_HOST"]);
+$checkhost = $host;
 $host = current($host);
+$hostforparentchild = '';//'children';'parent';//next($checkhost);
+$parentchildquery = "";
+if($hostforparentchild == 'parent'){
+  $parentchildquery = " AND type = 1";
+}elseif ($hostforparentchild == 'children') {
+  $parentchildquery = " AND type = 2";
+}
 $_POST["from"] = date("Y-m-d",strtotime("-2 days"));
 $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
 $_POST["to"] = $_POST["to"]." 23:59:59";
@@ -24,6 +33,8 @@ $adminselect = array("admin"=>"WHERE 1","adminone"=>"WHERE user_name LIKE '%..1%
 
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
+$fullurlforpagination =  $hostoriginal.$uri; 
+$fullurlforpagination =  reset(explode("?",$fullurlforpagination));
 
 $adminselectforgraph = array("admin"=>"['Dates', 'Version 0','Version 1', 'Version 2', 'Version 3', 'Version 4', 'Version 5', 'Version 6', 'Version 7', 'Version 8'],",
                              "adminone"=>"['Dates', 'Version 1'],",
@@ -71,6 +82,31 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/7")) { //print_r($_POST
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $resulttwo = db_query($qrytwo);
   $_SESSION["perm"]="a";
+
+    if(isset($_REQUEST['exporttocsv'])){
+    $qrydetailsofinstallcsv = "SELECT source,install_date,user_name,ip FROM appdata ".$adminselect[$host].$datequery." ".$parentchildquery;
+    
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=data.csv');
+ 
+    // create a file pointer connected to the output stream
+    $output = fopen('php://output', 'w');
+ 
+    // output the column headings
+    fputcsv($output, array('Country', 'Install Date', 'Pc Name', 'IP Address'));
+ 
+    // fetch the data
+    $rows = db_query($qrydetailsofinstallcsv);
+ 
+    // loop over the rows, outputting them
+    foreach ($rows as $key => $value) {
+       
+     $row = array('"'.$value->source.'"','"'.$value->install_date.'"','"'.$value->user_name.'"','"'.$value->ip.'"'); 
+    
+     fputcsv($output, $row);
+    }
+    die;
+  }
 }
 
 
@@ -125,7 +161,7 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
           <?php print render($title_suffix); ?>
           <?php if ($tabs): ?><?php print render($tabs); ?></div><?php endif; ?>
           <?php print render($tabs2); ?>
-          <?php print $messages; ?>
+          <?php //print $messages; ?>
           <?php print render($page['help']); ?>
           <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
            
@@ -352,6 +388,92 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
           <br>
           <br>
         <p>
+          
+          
+          <a href="http://<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
+          
+          </p>
+          <h1>Details of instalations</h1>
+          <br>
+          <br>
+            <?php
+  $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." ".$parentchildquery;
+  $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." ".$parentchildquery;
+ 
+  /* Get total number of records */
+         $rec_limit = 10;
+         $sql = $qrydetailsofinstallcount;
+         $retval = db_query( $sql );
+         
+         //if there is any count of record then do anything else
+         if( $retval ) 
+         {
+          
+           foreach($retval as $item) {
+              
+              $rec_count = $item->cid;
+           }
+          
+           
+           if( isset($_GET{'page'} ) ) {
+              $page = $_GET{'page'} + 1;
+              $offset = $rec_limit * $page ;
+           }else {
+              $page = 0;
+              $offset = 0;
+           }
+           
+           $left_rec = $rec_count - ($page * $rec_limit);
+           $sql = $qrydetailsofinstall." LIMIT $offset, $rec_limit";
+              
+           $retval = db_query( $sql );
+            echo '<div id="dcustid">';
+            echo '<table style="width:100%">';
+            echo '<tr>';
+                echo '<th>Country</th>';
+                echo '<th>Install Date</th>';
+                echo '<th>PC Name</th>';
+                echo '<th>IP Address</th>';
+            echo '</tr>';
+           
+           foreach($retval as $item) {
+              
+            echo '<tr>';
+            echo '<td>'.$item->source.'</td>';
+            echo '<td>'.$item->install_date.'</td>';
+            echo '<td>'.$item->user_name.'</td>';
+            echo '<td>'.$item->ip.'</td>';
+            echo '</tr>';
+                         
+            
+           }
+           echo '</table>';
+           
+ 
+           $total_pages = ceil($rec_count / $rec_limit);
+           if( $page > 0 ) {
+              $last = $page - 2;
+              echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a> |';
+              if($total_pages-1 > $page)
+              {
+                echo '<a href = "http://'.$fullurlforpagination.'?page='.$page.'">Next 10 Records</a>';
+              }  
+           }else if( $page == 0 ) {
+              echo '<a href = "http://'.$fullurlforpagination.'?page='.$page.'">Next 10 Records</a>';
+           }else if( $left_rec < $rec_limit ) {
+              $last = $page - 2;
+              echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a>';
+           }
+           echo '</div>';
+       }//if count check if ends
+}
+ 
+?>
+          <br>
+          <br>
+ 
+ 
+        <p>
         <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
       <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
@@ -492,5 +614,28 @@ $_POST["to"] = date("Y-m-d",strtotime("-1 days"));
               
           });
         }, 1000);
+
+        setTimeout(function(){
+          
+          var table = $('.noofinstalltbl');
+          var porc = "<?php echo $hostforparentchild; ?>";
+          var tocheckporc;
+          if(porc.toLowerCase() == 'parent'){
+             tocheckporc = 'child'; 
+          }
+          if(porc.toLowerCase() == 'children'){
+             tocheckporc = 'parent'; 
+          }
+          table.find('tr').each(function (i) {
+                  var $tds = $(this).find('td'),
+                  version = $tds.eq(0).text(),
+                  type = $tds.eq(1).text(),
+                  idate = $tds.eq(2).text();
+                  console.log(type+"---"+version+"---"+idate);
+                  if(type.toLowerCase() == tocheckporc){
+                    $(this).css("display", "none");
+                  }  
+              });
+        },1000);
     });
   </script>
