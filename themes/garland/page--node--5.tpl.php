@@ -9,7 +9,12 @@ $host = explode(".",$_SERVER["HTTP_HOST"]);
 $checkhost = $host;
 $host = current($host);
 $hostforparentchild = 'parent';//'children';//next($checkhost);
-
+$parentchildquery = "";
+if($hostforparentchild == 'parent'){
+  $parentchildquery = " AND type = 1"
+}elseif ($hostforparentchild == 'children') {
+  $parentchildquery = " AND type = 2"
+}
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
                 $arr["2016-04-04"][] = array("Version 2"=>5);
@@ -82,7 +87,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   $_SESSION["perm"]="a";
 
   if(isset($_REQUEST['exporttocsv'])){
-    $qrydetailsofinstallcsv = "SELECT source,install_date,user_name,ip FROM appdata ".$adminselect[$host].$datequery."  ";
+    $qrydetailsofinstallcsv = "SELECT source,install_date,user_name,ip FROM appdata ".$adminselect[$host].$datequery." ".$parentchildquery;
     
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename=data.csv');
@@ -403,8 +408,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <br>
           <br>
             <?php
-  $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." ";
-  $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." ";
+  $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." ".$parentchildquery;
+  $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." ".$parentchildquery;
 
   /* Get total number of records */
          $rec_limit = 10;
