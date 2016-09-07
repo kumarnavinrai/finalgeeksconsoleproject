@@ -434,7 +434,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
            }
            echo '</div>';
        }//if count check if ends
-}
+
  
 ?>
           <br>
@@ -606,6 +606,6 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/6")) { //print_r($_POST
                   }  
               });
         },1000);
-        
+
     });
   </script>
