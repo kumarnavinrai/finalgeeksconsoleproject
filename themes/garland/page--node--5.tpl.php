@@ -48,8 +48,8 @@ $adminselectforgraphsecondstring = array("admin"=>array(0,1,2,3,4,5,6,7,8,9),
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
 $fullurlforpagination =  $hostoriginal.$uri; 
-$fullurlforpagination =  explode("?",$fullurlforpagination);
-$fullurlforpagination =  reset($fullurlforpagination);  
+$fullurlforpagination =  reset(explode("?",$fullurlforpagination));
+
 
 
 if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST); die;
