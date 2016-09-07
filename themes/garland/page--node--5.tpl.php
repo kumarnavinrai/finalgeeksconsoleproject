@@ -292,12 +292,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
       <p>
         <div id="curve_chart" style="width: 900px; height: 500px"></div>
       </p>
-      <p>
-          
-          
-          <a href="http://<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
-          
-          </p>
+     
         <h2>Total Install per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
           <?php if(isset($result) && $result) { ?>
@@ -393,7 +388,14 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <br>
             <hr>
             <br>
+
           <br>
+           <p>
+          
+          
+          <a href="http://<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
+          
+          </p>
           <h1>Details of instalations</h1>
           <br>
           <br>
