@@ -9,7 +9,7 @@ $hostfornode = "http://admin.pc-optimiser.com:8000";
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $checkhost = $host;
 $host = current($host);
-$hostforparentchild = 'parent';//next($checkhost);//'children';'parent';//next($checkhost);
+$hostforparentchild = 'children';//next($checkhost);//'children';'parent';//next($checkhost);
 if(isset($_POST['order_by'])){
   $orderby = $_POST['order_by'];
 }
@@ -315,7 +315,16 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                     
                     }
                     if(porch.toLowerCase() == 'children'){
-                      
+                      var table = $('.temponlinetbl');
+
+                      table.find('tr').each(function (i) {
+                          var $tds = $(this).find('td');
+                          $tds.eq(3).hide();
+                          $tds.eq(7).hide();  
+                          var $tdsth = $(this).find('th');
+                          $tdsth.eq(3).hide();
+                          $tdsth.eq(7).hide();  
+                      });
                     }
                  },1000);
             });
