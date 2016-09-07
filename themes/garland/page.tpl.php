@@ -9,7 +9,7 @@ $hostfornode = "http://admin.pc-optimiser.com:8000";
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $checkhost = $host;
 $host = current($host);
-$hostforparentchild = 'children';//next($checkhost);//'children';'parent';//next($checkhost);
+$hostforparentchild = next($checkhost);//'children';'parent';//next($checkhost);
 if(isset($_POST['order_by'])){
   $orderby = $_POST['order_by'];
 }
