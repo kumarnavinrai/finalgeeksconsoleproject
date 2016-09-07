@@ -118,12 +118,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
                  "ip address : ".$item->ip." <br> ".
                  "--------------------------------<br>";
            }
-           
+
            $total_pages = ceil($rec_count / $rec_limit);
            if( $page > 0 ) {
               $last = $page - 2;
               echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a> |';
-              if($total_pages > $page -1)
+              if($total_pages-1 > $page)
               {
                 echo '<a href = "http://'.$fullurlforpagination.'?page='.$page.'">Next 10 Records</a>';
               }  
