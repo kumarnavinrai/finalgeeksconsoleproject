@@ -296,18 +296,33 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
           <h1>Current connections.</h1>
           <div id="custtable">
             <?php if($result){ ?>
-            <table style="width:100%">
+            <script>
+            $(document).ready(function(){
+                var porch = "<?php echo $hostforparentchild; ?>";
+                 setTimeout(function(){
+                    if(porch.toLowerCase() == 'parent'){
+                       $('table.temponlinetbl tbody tr td').eq(4).hide(); 
+                       $('table.temponlinetbl tbody tr td').eq(5).hide(); 
+
+                    }
+                    if(porch.toLowerCase() == 'children'){
+                      
+                    }
+                 },1000);
+            });
+            </script>  
+            <table class="temponlinetbl" style="width:100%">
               
               <tr>
                 <th>Select Both</th>
                 <th>Select</th>
                 <th>Ignore</th>
-                <th>PC Name Parent</th>
+                <th data="3" class="pcparentname">PC Name Parent</th>
                 <th>Select</th>
-                <th>PC Name Child</th>
-                <th>Port child</th>
+                <th data="4" class="pcparentchild">PC Name Child</th>
+                <th data="5" class="pcportchild">Port child</th>
                 <th>IP</th>
-                <th>Port parent</th>
+                <th data="6" class="pcportparent">Port parent</th>
                 <th class="sortby sourcecss" data="temponline.source">Country</th>
                 <th class="sortby install_datecss" data="install_date">Install Date</th>
               </tr>
