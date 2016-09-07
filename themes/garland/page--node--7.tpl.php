@@ -7,7 +7,7 @@ $hostoriginal = $host;
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $checkhost = $host;
 $host = current($host);
-$hostforparentchild = '';//'children';'parent';//next($checkhost);
+$hostforparentchild = 'parent';//'children';'parent';//next($checkhost);
 $parentchildquery = "";
 if($hostforparentchild == 'parent'){
   $parentchildquery = " AND type = 1";
