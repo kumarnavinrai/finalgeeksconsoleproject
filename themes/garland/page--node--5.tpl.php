@@ -158,7 +158,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <p>
           <a href="/drup/node/add/messagetoclient" title="messagetoclient">Message to client</a>
           || 
-          <a href="<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
+          <a href="http://<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
           
           </p>
           <p>
