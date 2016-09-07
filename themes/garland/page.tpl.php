@@ -304,17 +304,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                       var table = $('.temponlinetbl');
 
                       table.find('tr').each(function (i) {
-                          var $tds = $(this).find('td'),
-                          version = $tds.eq(0).text(),
-                          type = $tds.eq(1).text(),
-                          idate = $tds.eq(2).text();
-                          console.log(type+"---"+version+"---"+idate);
-                          
+                          var $tds = $(this).find('td');
+                          $tds.eq(5).hide();
+                          $tds.eq(6).hide();  
                       });
 
-                       $('table.temponlinetbl tbody tr td').eq(4).hide(); 
-                       $('table.temponlinetbl tbody tr td').eq(5).hide(); 
-
+                    
                     }
                     if(porch.toLowerCase() == 'children'){
                       
@@ -328,12 +323,12 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <th>Select Both</th>
                 <th>Select</th>
                 <th>Ignore</th>
-                <th data="4" class="pcparentname">PC Name Parent</th>
+                <th data="3" class="pcparentname">PC Name Parent</th>
                 <th>Select</th>
-                <th data="4" class="pcparentchild">PC Name Child</th>
-                <th data="5" class="pcportchild">Port child</th>
+                <th data="5" class="pcparentchild">PC Name Child</th>
+                <th data="6" class="pcportchild">Port child</th>
                 <th>IP</th>
-                <th data="6" class="pcportparent">Port parent</th>
+                <th data="7" class="pcportparent">Port parent</th>
                 <th class="sortby sourcecss" data="temponline.source">Country</th>
                 <th class="sortby install_datecss" data="install_date">Install Date</th>
               </tr>
