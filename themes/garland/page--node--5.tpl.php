@@ -77,67 +77,8 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $resulttwo = db_query($qrytwo);
   $_SESSION["perm"]="a";
-
-  $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
-  $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
-
-  /* Get total number of records */
-         $rec_limit = 10;
-         $sql = $qrydetailsofinstallcount;
-         $retval = db_query( $sql );
-         
-         //if there is any count of record then do anything else
-         if( $retval ) 
-         {
-          
-           foreach($retval as $item) {
-              print_r($item);
-              $rec_count = $item->cid;
-           }
-          
-           
-           if( isset($_GET{'page'} ) ) {
-              $page = $_GET{'page'} + 1;
-              $offset = $rec_limit * $page ;
-           }else {
-              $page = 0;
-              $offset = 0;
-           }
-           
-           $left_rec = $rec_count - ($page * $rec_limit);
-           echo $sql = $qrydetailsofinstall." LIMIT $offset, $rec_limit";
-              
-           $retval = db_query( $sql );
-           
-           
-           
-           foreach($retval as $item) {
-              echo "country :".$item->source."  <br> ".
-                 "install date : ".$item->install_date." <br> ".
-                 "user name : ".$item->user_name." <br> ".
-                 "ip address : ".$item->ip." <br> ".
-                 "--------------------------------<br>";
-           }
-
-           $total_pages = ceil($rec_count / $rec_limit);
-           if( $page > 0 ) {
-              $last = $page - 2;
-              echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a> |';
-              if($total_pages-1 > $page)
-              {
-                echo '<a href = "http://'.$fullurlforpagination.'?page='.$page.'">Next 10 Records</a>';
-              }  
-           }else if( $page == 0 ) {
-              echo '<a href = "http://'.$fullurlforpagination.'?page='.$page.'">Next 10 Records</a>';
-           }else if( $left_rec < $rec_limit ) {
-              $last = $page - 2;
-              echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a>';
-           }
-
-       }//if count check if ends
-}
-
 ?>
+
   <?php print render($page['header']); ?>
 
   <div id="wrapper">
@@ -424,8 +365,71 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           <br>
           <br>
             <hr>
+            <?php
+  $qrydetailsofinstall = "SELECT * FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
+  $qrydetailsofinstallcount = "SELECT count(id) as cid FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
+
+  /* Get total number of records */
+         $rec_limit = 10;
+         $sql = $qrydetailsofinstallcount;
+         $retval = db_query( $sql );
+         
+         //if there is any count of record then do anything else
+         if( $retval ) 
+         {
+          
+           foreach($retval as $item) {
+              
+              $rec_count = $item->cid;
+           }
+          
+           
+           if( isset($_GET{'page'} ) ) {
+              $page = $_GET{'page'} + 1;
+              $offset = $rec_limit * $page ;
+           }else {
+              $page = 0;
+              $offset = 0;
+           }
+           
+           $left_rec = $rec_count - ($page * $rec_limit);
+           $sql = $qrydetailsofinstall." LIMIT $offset, $rec_limit";
+              
+           $retval = db_query( $sql );
+           
+           
+           
+           foreach($retval as $item) {
+              echo "country :".$item->source."  <br> ".
+                 "install date : ".$item->install_date." <br> ".
+                 "user name : ".$item->user_name." <br> ".
+                 "ip address : ".$item->ip." <br> ".
+                 "--------------------------------<br>";
+           }
+
+           $total_pages = ceil($rec_count / $rec_limit);
+           if( $page > 0 ) {
+              $last = $page - 2;
+              echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a> |';
+              if($total_pages-1 > $page)
+              {
+                echo '<a href = "http://'.$fullurlforpagination.'?page='.$page.'">Next 10 Records</a>';
+              }  
+           }else if( $page == 0 ) {
+              echo '<a href = "http://'.$fullurlforpagination.'?page='.$page.'">Next 10 Records</a>';
+           }else if( $left_rec < $rec_limit ) {
+              $last = $page - 2;
+              echo '<a href = "http://'.$fullurlforpagination.'?page='.$last.'">Last 10 Records</a>';
+           }
+
+       }//if count check if ends
+}
+
+?>
           <br>
           <br>
+
+
         <p>
         <h2 style="display:none;">Total Uninstall per version per day.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
  ?></h2>
