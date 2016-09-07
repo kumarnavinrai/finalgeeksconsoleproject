@@ -301,6 +301,19 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 var porch = "<?php echo $hostforparentchild; ?>";
                  setTimeout(function(){
                     if(porch.toLowerCase() == 'parent'){
+                      var table = $('.noofinstalltbl');
+
+                      table.find('tr').each(function (i) {
+                          var $tds = $(this).find('td'),
+                          version = $tds.eq(0).text(),
+                          type = $tds.eq(1).text(),
+                          idate = $tds.eq(2).text();
+                          console.log(type+"---"+version+"---"+idate);
+                          if(type.toLowerCase() == tocheckporc){
+                            $(this).css("display", "none");
+                          }  
+                      });
+                      
                        $('table.temponlinetbl tbody tr td').eq(4).hide(); 
                        $('table.temponlinetbl tbody tr td').eq(5).hide(); 
 
@@ -317,7 +330,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 <th>Select Both</th>
                 <th>Select</th>
                 <th>Ignore</th>
-                <th data="3" class="pcparentname">PC Name Parent</th>
+                <th data="4" class="pcparentname">PC Name Parent</th>
                 <th>Select</th>
                 <th data="4" class="pcparentchild">PC Name Child</th>
                 <th data="5" class="pcportchild">Port child</th>
