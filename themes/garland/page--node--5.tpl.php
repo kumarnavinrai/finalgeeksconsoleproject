@@ -625,13 +625,20 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
           
           var table = $('.noofinstalltbl');
           var porc = "<?php echo $hostforparentchild; ?>";
+          var tocheckporc;
+          if(porc.toLowerCase() == 'parent'){
+             tocheckporc = 'child'; 
+          }
+          if(porc.toLowerCase() == 'children'){
+             tocheckporc = 'parent'; 
+          }
           table.find('tr').each(function (i) {
                   var $tds = $(this).find('td'),
                   version = $tds.eq(0).text(),
                   type = $tds.eq(1).text(),
                   idate = $tds.eq(2).text();
                   console.log(type+"---"+version+"---"+idate);
-                  if(type.toLowerCase() == porc){
+                  if(type.toLowerCase() == tocheckporc){
                     $(this).css("display", "none");
                   }  
               });
