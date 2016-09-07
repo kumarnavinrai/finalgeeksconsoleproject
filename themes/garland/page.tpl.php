@@ -301,7 +301,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/add/messagetoclient")) 
                 var porch = "<?php echo $hostforparentchild; ?>";
                  setTimeout(function(){
                     if(porch.toLowerCase() == 'parent'){
-                      var table = $('.noofinstalltbl');
+                      var table = $('.temponlinetbl');
 
                       table.find('tr').each(function (i) {
                           var $tds = $(this).find('td'),
