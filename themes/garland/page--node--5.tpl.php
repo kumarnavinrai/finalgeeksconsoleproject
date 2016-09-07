@@ -1,12 +1,14 @@
 <?php
 global $user;
+$_SERVER["HTTP_HOST"] = "http://admin.parent.pc-optimiser.com:8080/";
 $url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
 $hostoriginal = $host;
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
-
+echo $hostforparentchild = next($host);
+die;
 /*
   $arr["2016-04-04"][] = array("Version 1"=>9);
                 $arr["2016-04-04"][] = array("Version 2"=>5);
