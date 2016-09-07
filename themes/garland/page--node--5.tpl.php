@@ -77,6 +77,30 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
   //SELECT *  FROM `temponline` WHERE `user_name` LIKE '%PC..1%'
   $resulttwo = db_query($qrytwo);
   $_SESSION["perm"]="a";
+
+  if(isset($_REQUEST['exporttocsv'])){
+    $qrydetailsofinstallcsv = "SELECT source,install_date,user_name,ip FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=data.csv');
+
+    // create a file pointer connected to the output stream
+    $output = fopen('php://output', 'w');
+
+    // output the column headings
+    fputcsv($output, array('Country', 'Install Date', 'Pc Name', 'IP Address'));
+
+    // fetch the data
+    $rows = db_query($qrydetailsofinstallcsv);
+
+    // loop over the rows, outputting them
+    foreach ($rows as $key => $value) {
+       
+     $row = array($value->source,$value->install_date,$value->user_name,$value->ip); 
+    
+     fputcsv($output, $row);
+    }
+    die;
+  }
 ?>
 
   <?php print render($page['header']); ?>
@@ -133,6 +157,9 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
            
           <p>
           <a href="/drup/node/add/messagetoclient" title="messagetoclient">Message to client</a>
+          || 
+          <a href="<?php echo $fullurlforpagination; ?>?exporttocsv=1" title="messagetoclient">Export to csv</a>
+          
           </p>
           <p>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -170,10 +197,6 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
         </form>  
       </p>
       <p>
-
-      
-
-          
 
           <?php if(isset($resulttwo) && $resulttwo) { ?>
           <h2 style="display:none;">Average Install life per version.<?php   echo $message = isset($_POST["from"]) && isset($_POST["to"])? " Showing data From ".$_POST["from"]." To ".$_POST["to"]."":""; 
