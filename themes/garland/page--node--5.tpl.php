@@ -80,16 +80,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
 
   if(isset($_REQUEST['exporttocsv'])){
     $qrydetailsofinstallcsv = "SELECT source,install_date,user_name,ip FROM appdata ".$adminselect[$host].$datequery." AND uninstall_date != '' ";
-    $rows = db_query($qrydetailsofinstallcsv);
-
-    // loop over the rows, outputting them
-    foreach ($rows as $key => $value) {
-       
-     $row = array('"'.$value->source.'"','"'.$value->install_date.'"','"'.$value->user_name.'"','"'.$value->ip.'"'); 
     
-     print_r($row);
-    }
-    die;
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename=data.csv');
 
@@ -105,7 +96,7 @@ if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST
     // loop over the rows, outputting them
     foreach ($rows as $key => $value) {
        
-     $row = array($value->source,$value->install_date,$value->user_name,$value->ip); 
+     $row = array('"'.$value->source.'"','"'.$value->install_date.'"','"'.$value->user_name.'"','"'.$value->ip.'"'); 
     
      fputcsv($output, $row);
     }
