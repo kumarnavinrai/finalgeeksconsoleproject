@@ -3,6 +3,7 @@ global $user;
 $url = $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $uri = $_SERVER["REQUEST_URI"];
 $host = $_SERVER["HTTP_HOST"];
+$hostoriginal = $host;
 $host = explode(".",$_SERVER["HTTP_HOST"]);
 $host = current($host);
 
@@ -46,7 +47,7 @@ $adminselectforgraphsecondstring = array("admin"=>array(0,1,2,3,4,5,6,7,8,9),
 
 
 $adminselectforjs = array("admin"=>"","adminone"=>"PC..1","admintwo"=>"PC..2","adminthree"=>"PC..3","adminfour"=>"PC..4");
-echo $host; die;
+echo $hostoriginal; die;
 
 if (in_array('reps', $user->roles) && strpos($uri,"/node/5")) { //print_r($_POST); die;
   $datequery = isset($_POST["from"]) && isset($_POST["to"])? " AND install_date BETWEEN '".$_POST["from"]."' AND '".$_POST["to"]."'":"";
